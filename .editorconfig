@@ -1,13 +1,32 @@
-# Editor configuration, see http://editorconfig.org
+# .editorconfig — Синхрон с .prettierrc
 root = true
 
 [*]
 charset = utf-8
-indent_style = space
-indent_size = 2
-insert_final_newline = true
+indent_style = space # useTabs: false
+indent_size = 2 # tabWidth: 2
+end_of_line = lf # endOfLine: "lf"
+insert_final_newline = true # Prettier сам добавляет, дублируем
 trim_trailing_whitespace = true
 
+# Markdown (proseWrap: always)
 [*.md]
-max_line_length = off
-trim_trailing_whitespace = false
+trim_trailing_whitespace = false # Для списков и подчёркиваний
+max_line_length = 80 # printWidth: 80
+
+# YAML / JSON / конфиги
+[*.{json,jsonc,yml,yaml}]
+indent_size = 2
+
+# JS / TS / JSX / TSX
+[*.{js,ts,jsx,tsx}]
+indent_size = 2
+
+# CSS / SCSS / Less
+[*.{css,scss,less}]
+indent_size = 2
+
+# Python (если нужно)
+[*.py]
+indent_size = 4
+

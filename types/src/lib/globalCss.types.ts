@@ -6,5 +6,4 @@ type TBreakpoints = {
   xl: string;
   xxl: string;
 };
-
 export type { TBreakpoints };

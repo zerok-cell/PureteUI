@@ -2,12 +2,12 @@
   "name": "@zero-ui/source",
   "version": "0.0.0",
   "license": "MIT",
+  "repository": "https://github.com/zerok-cell/ZeroUI.git",
   "scripts": {},
   "private": true,
   "dependencies": {
     "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-router-dom": "6.29.0"
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -47,6 +47,7 @@
     "verdaccio": "^6.0.5",
     "vite": "^6.0.0",
     "vite-plugin-dts": "~4.5.0",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.0"
   },
   "nx": {
