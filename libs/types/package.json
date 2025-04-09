@@ -1,7 +1,8 @@
 {
-  "name": "@zero-ui/utils",
+  "name": "@zero-ui/types",
   "version": "0.0.1",
   "type": "module",
+  "author": "Murad Shakhsinov <swiftkey382@gmail.com>",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,16 +20,12 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "zeroui-utils",
+    "name": "types",
     "tags": [
+      "libs/types",
       "zeroui",
-      "utils",
-      "code",
-      "ts",
-      "typescript"
+      "libs/typescript"
     ]
   },
-  "dependencies": {
-    "@zero-ui/types": "workspace:^"
-  }
+  "dependencies": {}
 }
