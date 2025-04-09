@@ -28,5 +28,7 @@
       "typescript"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "@zero-ui/types": "workspace:^"
+  }
 }

@@ -137,7 +137,11 @@ importers:
 
   types: {}
 
-  utils: {}
+  utils:
+    dependencies:
+      '@zero-ui/types':
+        specifier: workspace:^
+        version: link:../types
 
 packages:
 
