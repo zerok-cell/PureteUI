@@ -5,6 +5,15 @@
   "references": [
     {
       "path": "./apps/ZeroUI"
+    },
+    {
+      "path": "./utils"
+    },
+    {
+      "path": "./utils"
+    },
+    {
+      "path": "./types"
     }
   ]
 }
