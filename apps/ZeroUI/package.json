@@ -1,0 +1,8 @@
+{
+  "name": "@zero-ui/ZeroUI",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "ZeroUI"
+  }
+}
