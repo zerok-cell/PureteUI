@@ -1,5 +1,4 @@
 packages:
-  - 'apps/*'
-  - 'utils'
-  - 'types'
+  #  - 'apps/*'
   - 'libs/*'
+#  - 'zero-ui-storybooks'

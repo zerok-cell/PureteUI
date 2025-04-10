@@ -4,16 +4,23 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/ZeroUI"
+      "path": "./libs/utils"
     },
     {
-      "path": "./utils"
+      "path": "./libs/types"
     },
     {
-      "path": "./utils"
+      "path": "./libs/components"
     },
     {
-      "path": "./types"
+      "path": "./libs/zero-ui-storybook"
     }
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10",
+      "customConditions": null
+    }
+  }
 }
