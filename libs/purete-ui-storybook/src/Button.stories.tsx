@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { Button } from '@zero-ui/components';
+import { Button } from '@purete-ui/components';
 
 const component = Button;
 

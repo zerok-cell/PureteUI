@@ -1,5 +1,5 @@
 {
-  "name": "@zero-ui/utils",
+  "name": "@purete-ui/utils",
   "version": "0.0.1",
   "type": "module",
   "publishConfig": {
@@ -25,16 +25,16 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "zeroui-utils",
+    "name": "purete-utils",
     "tags": [
-      "zeroui",
-      "libs/utils",
+      "purete",
+      "libs/purete",
       "code",
       "ts",
       "typescript"
     ]
   },
   "dependencies": {
-    "@zero-ui/types": "workspace:^"
+    "@purete-ui/types": "workspace:^"
   }
 }

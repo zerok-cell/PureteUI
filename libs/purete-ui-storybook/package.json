@@ -1,5 +1,5 @@
 {
-  "name": "@zero-ui/zero-ui-storybook",
+  "name": "@purete-ui/purete-ui-storybook",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,6 +22,6 @@
     ]
   },
   "dependencies": {
-    "@zero-ui/components": "workspace:^"
+    "@purete-ui/components": "workspace:^"
   }
 }

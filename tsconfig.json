@@ -13,7 +13,7 @@
       "path": "./libs/components"
     },
     {
-      "path": "./libs/zero-ui-storybook"
+      "path": "./libs/purete-ui-storybook"
     }
   ],
   "ts-node": {
