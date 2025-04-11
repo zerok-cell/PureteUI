@@ -14,9 +14,7 @@ export default defineConfig(() => ({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
-    vanillaExtractPlugin({
-      identifiers: ({ hash }) => `zr${hash}`,
-    }),
+    vanillaExtractPlugin(),
   ],
   // Uncomment this if you are using workers.
   // worker: {

@@ -9,9 +9,7 @@ export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/zero-ui-storybook',
   plugins: [
-    vanillaExtractPlugin({
-      identifiers: ({ hash }) => `$zr${hash}`,
-    }),
+    vanillaExtractPlugin(),
     react(),
     dts({
       entryRoot: 'src',
