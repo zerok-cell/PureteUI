@@ -1,18 +1,12 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/zero-ui-storybook',
+  cacheDir: '../../node_modules/.vite/libs/purete-theme-base',
   plugins: [
-    vanillaExtractPlugin({
-      identifiers: ({ hash }) => `$zr${hash}`,
-    }),
-    react(),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
@@ -34,7 +28,7 @@ export default defineConfig(() => ({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: '@zero-ui/zero-ui-storybook',
+      name: 'purete-theme-base',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
@@ -42,18 +36,7 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
-    },
-  },
-  test: {
-    watch: false,
-    globals: true,
-    environment: 'jsdom',
-    include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    reporters: ['default'],
-    coverage: {
-      reportsDirectory: './test-output/vitest/coverage',
-      provider: 'v8' as const,
+      external: [],
     },
   },
 }));

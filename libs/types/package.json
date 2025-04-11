@@ -23,7 +23,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "types",
+    "name": "@purete-ui/types",
     "tags": [
       "libs/types",
       "zeroui",

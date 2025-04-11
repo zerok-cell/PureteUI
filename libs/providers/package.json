@@ -1,16 +1,10 @@
 {
-  "name": "@purete-ui/utils",
+  "name": "@purete-ui/providers",
   "version": "0.0.1",
   "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "test": "vitest"
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -25,16 +19,12 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "@purete-ui/purete-utils",
+    "name": "@purte-ui/providers",
     "tags": [
+      "providers",
+      "purete-ui",
       "purete",
-      "libs/purete",
-      "code",
-      "ts",
-      "typescript"
+      "react"
     ]
-  },
-  "dependencies": {
-    "@purete-ui/types": "workspace:^"
   }
 }

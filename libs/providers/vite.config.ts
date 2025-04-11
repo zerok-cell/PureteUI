@@ -3,15 +3,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/zero-ui-storybook',
+  cacheDir: '../../node_modules/.vite/libs/providers',
   plugins: [
-    vanillaExtractPlugin({
-      identifiers: ({ hash }) => `$zr${hash}`,
-    }),
     react(),
     dts({
       entryRoot: 'src',
@@ -34,7 +30,7 @@ export default defineConfig(() => ({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: '@zero-ui/zero-ui-storybook',
+      name: '@purte-ui/providers',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.

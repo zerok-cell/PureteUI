@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@purete-ui/providers": "workspace:^",
     "@purete-ui/types": "workspace:^",
     "@purete-ui/utils": "workspace:^",
     "@vanilla-extract/css": "^1.17.1",

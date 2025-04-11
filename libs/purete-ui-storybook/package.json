@@ -22,6 +22,10 @@
     ]
   },
   "dependencies": {
-    "@purete-ui/components": "workspace:^"
+    "@purete-ui/components": "workspace:^",
+    "@purete-ui/providers": "workspace:^"
+  },
+  "devDependencies": {
+    "@vanilla-extract/vite-plugin": "^5.0.1"
   }
 }

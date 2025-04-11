@@ -37,19 +37,7 @@
     "src/**/*.spec.jsx",
     "eslint.config.js",
     "eslint.config.cjs",
-    "eslint.config.mjs",
-    "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.jsx",
-    "**/*.stories.tsx"
+    "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    {
-      "path": "../providers/tsconfig.lib.json"
-    },
-    {
-      "path": "../components/tsconfig.lib.json"
-    }
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }
