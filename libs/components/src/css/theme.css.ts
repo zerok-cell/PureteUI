@@ -14,8 +14,7 @@ const breakPoints: TBreakpoints = {
   xl: '1200px',
   xxl: '1400px',
 };
-const rounded = gradationValues(0, 5);
-const margin = gradationValues(0, 5);
+const sizeBase = gradationValues(0, 5);
 /**
  * @description Contract theme for theme. If you want to create own theme from Vanilla Extract, use this contract.
  * @example
@@ -42,13 +41,16 @@ const pureteTheme = createGlobalThemeContract({
     active: 'color-active',
   },
   roundedPx: {
-    ...generateContract(rounded, 'rounded'),
+    ...generateContract(sizeBase, 'rounded'),
   },
   breakPoints: {
     ...generateContract(breakPoints, 'breakpoints'),
   },
   margin: {
-    ...generateContract(margin, 'margin'),
+    ...generateContract(sizeBase, 'margin'),
+  },
+  padding: {
+    ...generateContract(sizeBase, 'padding'),
   },
 });
 
@@ -65,15 +67,10 @@ createGlobalTheme(':root', pureteTheme, {
     accent: '#FAFAFA',
     active: '#1E1E1E',
   },
-  roundedPx: {
-    ...rounded,
-  },
-  breakPoints: {
-    ...breakPoints,
-  },
-  margin: {
-    ...margin,
-  },
+  roundedPx: sizeBase,
+  breakPoints: breakPoints,
+  margin: sizeBase,
+  padding: sizeBase,
 });
 
 export { pureteTheme };
