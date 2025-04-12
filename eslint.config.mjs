@@ -27,6 +27,7 @@ export default [
           ],
         },
       ],
+      'complexity': ['warn', { max: 10 }],
     },
   },
   {

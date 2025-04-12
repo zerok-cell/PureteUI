@@ -1,13 +1,10 @@
 import buttonStyle from './buttonStyle.css';
 import { TButton } from '../types/button/buttonProps.types';
-import { pureteTheme } from '../css';
 import { conditionReturn } from '@purete-ui/utils';
 
-export const Button: TButton = ({ disabled, children, ...props }) => {
-  console.log(pureteTheme.padding);
-
+export const Button: TButton = ({ className, children, ...props }) => {
   return (
-    <button disabled className={buttonStyle({ disabled, ...props })}>
+    <button className={`${className} ${buttonStyle({ ...props })}`} {...props}>
       {conditionReturn(children, 'Button')}
     </button>
   );
