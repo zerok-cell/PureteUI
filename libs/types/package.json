@@ -1,7 +1,10 @@
 {
-  "name": "@zero-ui/types",
+  "name": "@purete-ui/types",
   "version": "0.0.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Murad Shakhsinov <swiftkey382@gmail.com>",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -20,7 +23,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "types",
+    "name": "@purete-ui/types",
     "tags": [
       "libs/types",
       "zeroui",

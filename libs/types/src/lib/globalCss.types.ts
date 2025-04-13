@@ -1,9 +1,11 @@
-type TBreakpoints = {
-  xs: string;
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
-  xxl: string;
+type TBreakpoints<TValue = string> = {
+  xs: TValue;
+  sm: TValue;
+  md: TValue;
+  lg: TValue;
+  xl: TValue;
+  xxl: TValue;
 };
-export type { TBreakpoints };
+
+type TKeysBreakpoints = keyof TBreakpoints;
+export type { TBreakpoints, TKeysBreakpoints };

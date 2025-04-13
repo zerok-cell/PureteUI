@@ -4,16 +4,29 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/ZeroUI"
+      "path": "./libs/utils"
     },
     {
-      "path": "./utils"
+      "path": "./libs/types"
     },
     {
-      "path": "./utils"
+      "path": "./libs/components"
     },
     {
-      "path": "./types"
+      "path": "./libs/purete-ui-storybook"
+    },
+    {
+      "path": "./libs/purete-theme-base"
+    },
+    {
+      "path": "./libs/providers"
     }
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10",
+      "customConditions": null
+    }
+  }
 }

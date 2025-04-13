@@ -1,5 +1,3 @@
 packages:
-  - 'apps/*'
-  - 'utils'
-  - 'types'
   - 'libs/*'
+  - 'utils'
