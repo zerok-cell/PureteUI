@@ -1,6 +1,5 @@
-import { TBreakpoints, TUnitsOfMeasurement } from '@zero-ui/types';
+import { TBreakpoints, TKeysBreakpoints, TUnitsOfMeasurement } from '@zero-ui/types';
 
-type TKeysFromResult<TValue> = Record<keyof TBreakpoints, TValue>;
 /**
  * @description Creates a gradation of values, or a map of values according to your template.
  * @param initialValue The starting number from which the graduation begins, its value will go to the "xs" key
@@ -11,23 +10,35 @@ type TKeysFromResult<TValue> = Record<keyof TBreakpoints, TValue>;
  * "unit" and should return a string
  */
 
-const gradationOfValues = <TResult = `${number}${TUnitsOfMeasurement}`>(
+const gradationOfValues = <TResultValue = `${number}px`>(
   initialValue = 0,
   mutation: number | ((v: typeof initialValue) => number) = 5,
   unit: TUnitsOfMeasurement = 'px',
-  formater: (v: typeof initialValue, u: typeof unit) => TResult = (v, u) =>
-    `${v}${u}` as TResult
-): Partial<TKeysFromResult<TResult>> => {
-  const result: Partial<TKeysFromResult<TResult>> = {
+  formater: (v: typeof initialValue, u: typeof unit) => TResultValue = (v, u) =>
+    `${v}${u}` as TResultValue
+): TBreakpoints<TResultValue> => {
+  const keys: Exclude<TKeysBreakpoints, 'xs'>[] = [
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    'xxl',
+  ];
+  const initialResult = keys.reduce((acc, cur) => {
+    acc[cur] = undefined;
+    return acc;
+  }, {} as Record<Exclude<TKeysBreakpoints, 'xs'>, undefined>);
+  const result: TBreakpoints<TResultValue | undefined> = {
     xs: formater(initialValue, unit),
+    ...initialResult,
   };
-  const keys: (keyof TBreakpoints)[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
+
   keys.forEach((key) => {
     if (typeof mutation === 'function') initialValue = mutation(initialValue);
     else initialValue += mutation;
     result[key] = formater(initialValue, unit);
   });
-  return result;
+  return result as TBreakpoints<TResultValue>;
 };
 
 export default gradationOfValues;

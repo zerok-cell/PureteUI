@@ -1,11 +1,24 @@
 import buttonStyle from './buttonStyle.css';
-import { TButton } from '../types/button/buttonProps.types';
+import { TButton } from '../types';
 import { conditionReturn } from '@purete-ui/utils';
 
-export const Button: TButton = ({ className, children, ...props }) => {
+export const Button: TButton = ({
+  className,
+  customize,
+  children,
+  disabled,
+  ...props
+}) => {
   return (
-    <button className={`${className} ${buttonStyle({ ...props })}`} {...props}>
-      {conditionReturn(children, 'Button')}
+    <button
+      disabled
+      className={`${className} ${buttonStyle({
+        ...customize,
+        disabled,
+      })}`}
+      {...props}
+    >
+      {conditionReturn({ variable: children, returnIfFalse: 'Button' })}
     </button>
   );
 };

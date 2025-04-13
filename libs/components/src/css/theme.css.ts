@@ -14,7 +14,9 @@ const breakPoints: TBreakpoints = {
   xl: '1200px',
   xxl: '1400px',
 };
-const sizeBase = gradationValues(0, 5);
+const sizeBase = gradationValues(0, 5, 'px');
+export type TSizeBase = typeof sizeBase;
+
 /**
  * @description Contract theme for theme. If you want to create own theme from Vanilla Extract, use this contract.
  * @example
@@ -52,6 +54,9 @@ const pureteTheme = createGlobalThemeContract({
   padding: {
     ...generateContract(sizeBase, 'padding'),
   },
+  borderWidth: {
+    ...generateContract(sizeBase, 'borderWidth'),
+  },
 });
 
 /**
@@ -71,6 +76,7 @@ createGlobalTheme(':root', pureteTheme, {
   breakPoints: breakPoints,
   margin: sizeBase,
   padding: sizeBase,
+  borderWidth: sizeBase,
 });
 
 export { pureteTheme };

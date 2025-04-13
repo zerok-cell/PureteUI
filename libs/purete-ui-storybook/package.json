@@ -23,7 +23,13 @@
   },
   "dependencies": {
     "@purete-ui/components": "workspace:^",
-    "@purete-ui/providers": "workspace:^"
+    "@purete-ui/providers": "workspace:^",
+    "@storybook/addon-a11y": "^8.6.12",
+    "@storybook/addon-actions": "^8.6.12",
+    "@storybook/addon-viewport": "^8.6.12",
+    "storybook-addon-deep-controls": "^0.9.2",
+    "storybook-addon-pseudo-states": "^4.0.3",
+    "storybook-dark-mode": "^4.0.2"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^5.0.1"

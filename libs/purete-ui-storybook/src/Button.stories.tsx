@@ -1,29 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@purete-ui/components';
-import { sizeKeys } from './index';
 
 const component = Button;
 
 const meta: Meta<typeof component> = {
+  args: {
+    customize: {
+      paddingCss: 'string',
+      transitionSpeedVariant: '1 | 2 | 3 | undefined',
+      transitionFunctionVariant: 'string',
+    },
+  },
   argTypes: {
-    children: { control: 'text', description: 'Button content' },
-    paddingCss: {
-      control: 'select',
-      options: sizeKeys,
-      description: 'Button padding',
+    'children': { control: 'text', description: 'Button content' },
+    'customize': {
+      control: 'object',
+      description: 'Customize the button style',
+      table: { subcategory: 'dwd' },
     },
-    disabled: {
+    'customize.paddingCss': {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'Button padding size',
+    },
+    // 'customize.transitionSpeedVariant': {
+    //   control: 'select',
+    //   options: ['1', '2', '3'],
+    //   description: 'Transition speed for animations',
+    // },
+    // 'customize.transitionFunctionVariant': {
+    //   control: 'select',
+    //   options: ['ease', 'easeIn', 'easeOut', 'easeInOut'],
+    //   description: 'Timing function for animations',
+    // },
+    'disabled': {
       control: 'boolean',
-    },
-    transitionSpeedVariant: {
-      control: 'select',
-      options: ['1', '2', '3'], // Возможные значения из styleVariants
-      description: 'Speed of the transition',
-    },
-    transitionFunctionVariant: {
-      control: 'select',
-      options: ['ease', 'easeIn', 'easeOut', 'easeInOut'], // Возможные значения из styleVariants
-      description: 'Timing function of the transition',
+      description: 'Disable the button',
     },
   },
   component: component,
@@ -34,18 +46,13 @@ type Story = StoryObj<typeof component>;
 
 export const Primary = {
   args: {
-    transitionSpeedVariant: "3",
-    transitionFunctionVariant: "ease",
-    disabled: false,
-    paddingCss: "sm",
-    children: "Button"
-  },
-};
+    customize: {
+      transitionSpeedVariant: '3',
+      transitionFunctionVariant: 'ease',
+      paddingCss: 'sm',
+    },
 
-export const Heading: Story = {
-  args: {},
-  // play: async ({ canvasElement }) => {
-  //   const canvas = within(canvasElement);
-  //   expect(canvas.getByText(/Welcome to Button!/gi)).toBeTruthy();
-  // },
+    disabled: false,
+    children: 'Button',
+  },
 };

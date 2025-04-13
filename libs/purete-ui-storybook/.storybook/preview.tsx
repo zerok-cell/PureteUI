@@ -1,6 +1,13 @@
 import type { Preview } from '@storybook/react';
 
+export const parameters = {
+  darkMode: {
+    current: 'dark',
+  },
+};
+
 const preview: Preview = {
+  tags: ['autodocs'],
   decorators: [
     (Story) => {
       return (
