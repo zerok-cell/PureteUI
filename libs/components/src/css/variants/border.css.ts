@@ -1,9 +1,11 @@
 import { styleVariants } from '@vanilla-extract/css';
 import { pureteTheme } from '../theme.css';
+import { TKeysBreakpoints } from '@purete-ui/types';
 
-export const borderWidth = styleVariants(pureteTheme.borderWidth, (width) => [
-  { borderWidth: width },
-]);
+export const borderWidth: Record<TKeysBreakpoints, string> = styleVariants(
+  pureteTheme.borderWidth,
+  (width) => [{ borderWidth: width }]
+);
 export const borderStyle = styleVariants({
   solid: {
     borderStyle: 'solid',

@@ -14,7 +14,9 @@ const breakPoints: TBreakpoints = {
   xl: '1200px',
   xxl: '1400px',
 };
-const sizeBase = gradationValues(0, 5, 'px');
+const sizeBase = gradationValues(0, 5);
+const borderWidth = gradationValues(0, 1);
+
 export type TSizeBase = typeof sizeBase;
 
 /**
@@ -55,7 +57,7 @@ const pureteTheme = createGlobalThemeContract({
     ...generateContract(sizeBase, 'padding'),
   },
   borderWidth: {
-    ...generateContract(sizeBase, 'borderWidth'),
+    ...generateContract(borderWidth, 'borderWidth'),
   },
 });
 
@@ -76,7 +78,7 @@ createGlobalTheme(':root', pureteTheme, {
   breakPoints: breakPoints,
   margin: sizeBase,
   padding: sizeBase,
-  borderWidth: sizeBase,
+  borderWidth: borderWidth,
 });
 
 export { pureteTheme };

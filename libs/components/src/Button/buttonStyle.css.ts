@@ -1,37 +1,39 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import {
+  borderRadius,
+  borderStyle,
+  borderWidth,
+  disabled,
+  paddingCss,
   pureteTheme,
   transitionFunctionVariant,
   transitionSpeedVariant,
 } from '../css';
 import baseClick from '../css/click/base.css';
-import { paddingCss } from '../css/variants/padding.css';
 
 const buttonStyle = recipe({
   base: [
     baseClick(),
     {
       outline: 'none',
-      border: `solid 2px ${pureteTheme.colors.accent}`,
-      background: pureteTheme.colors.primary,
+      borderColor: pureteTheme.colors.accent,
       color: pureteTheme.colors.accent,
-      borderRadius: 6,
     },
   ],
   variants: {
+    borderRadius,
     transitionSpeedVariant,
     transitionFunctionVariant,
     paddingCss,
-    disabled: {
-      true: {
-        background: pureteTheme.colors.active,
-        color: pureteTheme.colors.primary,
-        border: `solid 2px ${pureteTheme.colors.primary}`,
-        cursor: 'not-allowed',
-      },
-    },
+    borderWidth,
+    borderStyle,
+    disabled,
   },
   defaultVariants: {
+    disabled: false,
+    borderRadius: 'sm',
+    borderStyle: 'solid',
+    borderWidth: 'sm',
     paddingCss: 'sm',
     transitionSpeedVariant: 3,
     transitionFunctionVariant: 'ease',

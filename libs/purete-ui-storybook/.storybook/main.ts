@@ -2,6 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ['../src/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
+  
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
@@ -10,6 +11,8 @@ const config: StorybookConfig = {
     '@storybook/addon-viewport',
     'storybook-addon-pseudo-states',
     '@storybook/addon-actions',
+    'storybook-addon-deep-controls',
+    '@storybook/addon-controls',
   ],
   viteFinal: async (config) => {
     return config;

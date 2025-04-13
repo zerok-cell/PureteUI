@@ -4,17 +4,27 @@ import { conditionReturn } from '@purete-ui/utils';
 
 export const Button: TButton = ({
   className,
-  customize,
+  transitionFunctionVariant,
+  transitionSpeedVariant,
+  paddingCss,
   children,
+  borderStyle,
+  borderWidth,
   disabled,
+  borderRadius,
   ...props
 }) => {
   return (
     <button
       disabled
       className={`${className} ${buttonStyle({
-        ...customize,
+        transitionSpeedVariant,
+        paddingCss,
+        transitionFunctionVariant,
         disabled,
+        borderWidth,
+        borderStyle,
+        borderRadius,
       })}`}
       {...props}
     >

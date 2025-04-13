@@ -49,12 +49,14 @@ const conditionReturn = <TVariable = string, TReturn = string>({
   };
 
   hookErrorHandler(() => hooks?.preHook?.(variable));
-  const condition =
-    variable && checker
-      ? checker(variable)
-        ? variable
-        : returnIfFalse
-      : returnIfFalse;
+
+  const condition = ((): typeof variable | typeof returnIfFalse => {
+    if (variable) {
+      if (checker) return checker(variable) ? variable : returnIfFalse;
+      return variable;
+    }
+    return returnIfFalse;
+  })();
 
   hookErrorHandler(() => hooks?.postHook?.(variable, condition));
 
