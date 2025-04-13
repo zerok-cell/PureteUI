@@ -9,12 +9,13 @@ import {
   transitionFunctionVariant,
   transitionSpeedVariant,
 } from '../css';
-import baseClick from '../css/click/base.css';
 
 const buttonStyle = recipe({
   base: [
-    baseClick(),
+    // baseClick(),
     {
+      background: pureteTheme.colors.primary,
+      overflow: 'hidden',
       outline: 'none',
       borderColor: pureteTheme.colors.accent,
       color: pureteTheme.colors.accent,

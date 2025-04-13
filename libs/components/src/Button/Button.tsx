@@ -1,6 +1,8 @@
 import buttonStyle from './buttonStyle.css';
 import { TButton } from '../types';
 import { conditionReturn } from '@purete-ui/utils';
+import { waveEffect } from '../css';
+import { useState } from 'react';
 
 export const Button: TButton = ({
   className,
@@ -12,11 +14,26 @@ export const Button: TButton = ({
   borderWidth,
   disabled,
   borderRadius,
+  onClick,
+  onMouseDown,
   ...props
 }) => {
+  const [waveState, setWaveState] = useState(false);
+  const clickEvent = (e) => {
+    setWaveState(true);
+    onClick && onClick(e);
+  };
+  const onMouseDownEvent = (e) => {
+    onMouseDown && onMouseDown(e);
+    setWaveState(false);
+  };
+  console.log(waveState);
   return (
     <button
-      disabled
+      onMouseDown={onMouseDownEvent}
+      onMouseUp={clickEvent}
+      // onClick={clickEvent}
+      disabled={disabled}
       className={`${className} ${buttonStyle({
         transitionSpeedVariant,
         paddingCss,
@@ -28,7 +45,11 @@ export const Button: TButton = ({
       })}`}
       {...props}
     >
-      {conditionReturn({ variable: children, returnIfFalse: 'Button' })}
+      <span className={waveEffect({ click: waveState })}></span>
+
+      <span>
+        {conditionReturn({ variable: children, returnIfFalse: 'Button' })}
+      </span>
     </button>
   );
 };

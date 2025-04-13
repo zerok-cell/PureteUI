@@ -5,3 +5,4 @@ export * from './variants/border.css';
 export * from './variants/rounded.css';
 export * from './variants/padding.css';
 export * from './variants/disabled.css';
+export * from './effects';
