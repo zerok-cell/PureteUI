@@ -16,12 +16,11 @@ export const Button: TButton = ({
 }) => {
   return (
     <button
-      disabled
+      disabled={disabled}
       className={`${className} ${buttonStyle({
         transitionSpeedVariant,
         paddingCss,
         transitionFunctionVariant,
-        disabled,
         borderWidth,
         borderStyle,
         borderRadius,

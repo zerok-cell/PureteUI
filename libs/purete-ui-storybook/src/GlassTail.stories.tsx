@@ -77,4 +77,12 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
 export default meta;
 type Story = StoryObj<typeof component>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    width: 200,
+    height: 200,
+    paddingCss: "xs",
+    borderRadius: "xxl",
+    borderWidth: "sm"
+  }
+};

@@ -13,6 +13,7 @@ import baseClick from '../../css/click/base.css';
 
 const buttonStyle = recipe({
   base: [
+    disabled,
     baseClick(),
     {
       outline: 'none',
@@ -27,10 +28,8 @@ const buttonStyle = recipe({
     paddingCss,
     borderWidth,
     borderStyle,
-    disabled,
   },
   defaultVariants: {
-    disabled: false,
     borderRadius: 'sm',
     borderStyle: 'solid',
     borderWidth: 'sm',

@@ -3,10 +3,10 @@ import { pureteTheme } from '../theme.css';
 
 const baseClick = recipe({
   base: {
-    background: pureteTheme.colors.primary,
+    backgroundColor: pureteTheme.colors.primary,
     selectors: {
       '&:active': {
-        background: pureteTheme.colors.active,
+        backgroundColor: pureteTheme.colors.active,
       },
     },
   },
