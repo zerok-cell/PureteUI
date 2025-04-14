@@ -82,6 +82,7 @@ export const skeletonBlockStyleCss = recipe({
     },
   },
   variants: {
+    //TODO убрать transiton
     transitionSpeedVariant,
     transitionFunctionVariant,
     paddingCss,
