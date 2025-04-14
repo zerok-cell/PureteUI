@@ -1,5 +1,5 @@
 import buttonStyle from './buttonStyle.css';
-import { TButton } from '../types';
+import { TButton } from '../../types';
 import { conditionReturn } from '@purete-ui/utils';
 
 export const Button: TButton = ({

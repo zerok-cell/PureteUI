@@ -1,5 +1,5 @@
 import { ComponentProps, FC, ReactNode } from 'react';
-import { TButtonStyle } from '../../Button/buttonStyle.css';
+import { TButtonStyle } from '../../components/Button/buttonStyle.css';
 
 export type TButton = FC<
   TButtonStyle & {

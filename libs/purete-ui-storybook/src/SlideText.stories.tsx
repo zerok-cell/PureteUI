@@ -10,7 +10,11 @@ const component = SlideText;
 const customProperties = 'Custom properties';
 const standardProperties = 'Standard properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
-  args: {},
+  args: {
+    reverse: false,
+    transitionSpeedVariant: 2,
+    transitionFunctionVariant: 'ease',
+  },
 
   argTypes: {
     children: { control: 'text', description: 'Button content' },

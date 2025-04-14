@@ -8,8 +8,8 @@ import {
   pureteTheme,
   transitionFunctionVariant,
   transitionSpeedVariant,
-} from '../css';
-import baseClick from '../css/click/base.css';
+} from '../../css';
+import baseClick from '../../css/click/base.css';
 
 const buttonStyle = recipe({
   base: [

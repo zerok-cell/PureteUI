@@ -1,5 +1,5 @@
 import { ComponentProps, FC, ReactNode } from 'react';
-import { TSlideTextStyle } from '../../SlideText/slideText.css';
+import { TSlideTextStyle } from '../../components/SlideText/slideText.css';
 
 export type TSlideTextProps = {
   children: ReactNode | string;

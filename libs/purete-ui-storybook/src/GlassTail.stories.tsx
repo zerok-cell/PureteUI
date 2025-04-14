@@ -3,29 +3,21 @@ import {
   borderRadius,
   borderStyle,
   borderWidth,
-  Button,
+  GlassTail,
   paddingCss,
-  transitionFunctionVariant,
-  transitionSpeedVariant,
 } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-const component = Button;
+const component = GlassTail;
 const customProperties = 'Custom properties';
 const standardProperties = 'Standard properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
-  args: {
-    disabled: false,
-    borderRadius: 'sm',
-    borderStyle: 'solid',
-    borderWidth: 'sm',
-    paddingCss: 'sm',
-    transitionSpeedVariant: 3,
-    transitionFunctionVariant: 'ease',
-  },
-
   argTypes: {
-    children: { control: 'text', description: 'Button content' },
+    children: {
+      control: 'text',
+      description: 'Button content',
+      table: { category: standardProperties },
+    },
     paddingCss: {
       control: 'select',
       options: Object.keys(paddingCss),
@@ -33,34 +25,36 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
       table: { category: customProperties },
     },
 
-    transitionSpeedVariant: {
-      control: 'select',
-      options: Object.keys(transitionSpeedVariant),
-      description: 'Transition speed for animations',
-      table: { category: customProperties },
-    },
-    transitionFunctionVariant: {
-      control: 'select',
-      options: Object.keys(transitionFunctionVariant),
-      description: 'Timing function for animations',
-      table: { category: customProperties },
-    },
-
-    disabled: {
-      control: 'boolean',
-      description: 'Disable the button',
-      table: { category: standardProperties },
-    },
     borderWidth: {
       control: 'select',
       options: Object.keys(borderWidth),
       description: 'Border width size ',
       table: { category: customProperties },
     },
+    width: {
+      control: 'number',
+      description: 'Width glass',
+      table: { category: customProperties },
+    },
+    height: {
+      control: 'number',
+      description: 'height glass ',
+      table: { category: customProperties },
+    },
+    borderOpacity: {
+      control: 'number',
+      description: 'Border opacity ',
+      table: { category: customProperties },
+    },
     borderStyle: {
       control: 'select',
       options: Object.keys(borderStyle),
       description: 'Border width size ',
+      table: { category: customProperties },
+    },
+    borderColor: {
+      control: 'color',
+      description: 'Border color',
       table: { category: customProperties },
     },
     borderRadius: {
@@ -73,12 +67,12 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
     style: {
       control: 'object',
       description: 'Style from button',
-      table: { category: customProperties },
+      table: { category: standardProperties },
     },
   },
 
   component: component,
-  title: 'Button',
+  title: 'GlassTail',
 };
 export default meta;
 type Story = StoryObj<typeof component>;
