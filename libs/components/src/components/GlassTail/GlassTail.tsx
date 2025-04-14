@@ -1,5 +1,5 @@
 import { borderOpacityVariable, glassTailStyleCss } from './glassTailStyle.css';
-import { TGlassTail } from '../../types/glassTail/glassTail.types';
+import { TGlassTail } from '../../types';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 export const GlassTail: TGlassTail = ({

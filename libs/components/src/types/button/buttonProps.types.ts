@@ -1,8 +1,4 @@
-import { ComponentProps, FC, ReactNode } from 'react';
+import { ComponentProps, FC } from 'react';
 import { TButtonStyle } from '../../components/Button/buttonStyle.css';
 
-export type TButton = FC<
-  TButtonStyle & {
-    children?: ReactNode | string;
-  } & ComponentProps<'button'>
->;
+export type TButton = FC<TButtonStyle & ComponentProps<'button'>>;

@@ -1,3 +1,4 @@
+export * from './components/Skeleton/SkeletonBlock/SkeletonBlock';
 export * from './css';
 
 export * from './components/GlassTail/GlassTail';
