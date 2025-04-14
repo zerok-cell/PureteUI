@@ -1,5 +1,5 @@
 import { endColor, slideTextStyle, startColor } from './slideText.css';
-import { TSlideText } from '../types/slidetext/slideText.types';
+import { TSlideText } from '../types';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { pureteTheme } from '../css';
 
