@@ -1,85 +1,56 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  borderRadius,
-  borderStyle,
-  borderWidth,
-  Button,
-  paddingCss,
+  SlideText,
   transitionFunctionVariant,
   transitionSpeedVariant,
 } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-const component = Button;
+const component = SlideText;
 const customProperties = 'Custom properties';
 const standardProperties = 'Standard properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
-  args: {
-    disabled: false,
-
-    borderRadius: 'sm',
-    borderStyle: 'solid',
-    borderWidth: 'sm',
-    paddingCss: 'sm',
-    transitionSpeedVariant: 3,
-    transitionFunctionVariant: 'ease',
-  },
+  args: {},
 
   argTypes: {
     children: { control: 'text', description: 'Button content' },
-    paddingCss: {
-      control: 'select',
-      options: Object.keys(paddingCss),
-      description: 'Button padding size',
+    startColorCustom: {
+      control: 'color',
+      description: 'Start color from gradient color',
       table: { category: customProperties },
     },
-
+    endColorCustom: {
+      control: 'color',
+      description: 'End color from gradient color',
+      table: { category: customProperties },
+    },
     transitionSpeedVariant: {
       control: 'select',
       options: Object.keys(transitionSpeedVariant),
       description: 'Transition speed for animations',
       table: { category: customProperties },
     },
+
     transitionFunctionVariant: {
       control: 'select',
       options: Object.keys(transitionFunctionVariant),
       description: 'Timing function for animations',
       table: { category: customProperties },
     },
-
-    disabled: {
+    reverse: {
       control: 'boolean',
-      description: 'Disable the button',
-      table: { category: standardProperties },
-    },
-    borderWidth: {
-      control: 'select',
-      options: Object.keys(borderWidth),
-      description: 'Border width size ',
+      description: 'Reverse color',
       table: { category: customProperties },
     },
-    borderStyle: {
-      control: 'select',
-      options: Object.keys(borderStyle),
-      description: 'Border width size ',
-      table: { category: customProperties },
-    },
-    borderRadius: {
-      control: 'select',
-      options: Object.keys(borderRadius),
-      description: 'Border radius property',
-      table: { category: customProperties },
-    },
-
     style: {
       control: 'object',
       description: 'Style from button',
-      table: { category: customProperties },
+      table: { category: standardProperties },
     },
   },
 
   component: component,
-  title: 'Button',
+  title: 'SlideText',
 };
 export default meta;
 type Story = StoryObj<typeof component>;
