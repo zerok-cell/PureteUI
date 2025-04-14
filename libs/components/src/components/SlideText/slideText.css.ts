@@ -3,7 +3,7 @@ import {
   pureteTheme,
   transitionFunctionVariant,
   transitionSpeedVariant,
-} from '../css';
+} from '../../css';
 import { createVar } from '@vanilla-extract/css';
 
 const positionVar = createVar();

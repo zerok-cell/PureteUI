@@ -1,5 +1,5 @@
 import buttonStyle from './buttonStyle.css';
-import { TButton } from '../types';
+import { TButton } from '../../types';
 import { conditionReturn } from '@purete-ui/utils';
 
 export const Button: TButton = ({
@@ -16,12 +16,11 @@ export const Button: TButton = ({
 }) => {
   return (
     <button
-      disabled
+      disabled={disabled}
       className={`${className} ${buttonStyle({
         transitionSpeedVariant,
         paddingCss,
         transitionFunctionVariant,
-        disabled,
         borderWidth,
         borderStyle,
         borderRadius,

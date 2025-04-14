@@ -1,4 +1,6 @@
-export * from './SlideText/SlideText';
-export * from './Button/Button';
 export * from './css';
+
+export * from './components/GlassTail/GlassTail';
+export * from './components/SlideText/SlideText';
+export * from './components/Button/Button';
 export * from './types';

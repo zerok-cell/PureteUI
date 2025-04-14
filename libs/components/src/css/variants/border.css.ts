@@ -6,6 +6,7 @@ export const borderWidth: Record<TKeysBreakpoints, string> = styleVariants(
   pureteTheme.borderWidth,
   (width) => [{ borderWidth: width }]
 );
+
 export const borderStyle = styleVariants({
   solid: {
     borderStyle: 'solid',

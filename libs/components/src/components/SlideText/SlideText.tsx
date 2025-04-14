@@ -1,7 +1,7 @@
 import { endColor, slideTextStyle, startColor } from './slideText.css';
-import { TSlideText } from '../types';
+import { TSlideText } from '../../types';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { pureteTheme } from '../css';
+import { pureteTheme } from '../../css';
 
 export const SlideText: TSlideText = ({
   transitionSpeedVariant,
