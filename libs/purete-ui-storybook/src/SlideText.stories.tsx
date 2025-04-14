@@ -14,24 +14,38 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
 
   argTypes: {
     children: { control: 'text', description: 'Button content' },
-
+    startColorCustom: {
+      control: 'color',
+      description: 'Start color from gradient color',
+      table: { category: customProperties },
+    },
+    endColorCustom: {
+      control: 'color',
+      description: 'End color from gradient color',
+      table: { category: customProperties },
+    },
     transitionSpeedVariant: {
       control: 'select',
       options: Object.keys(transitionSpeedVariant),
       description: 'Transition speed for animations',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
+
     transitionFunctionVariant: {
       control: 'select',
       options: Object.keys(transitionFunctionVariant),
       description: 'Timing function for animations',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
-
+    reverse: {
+      control: 'boolean',
+      description: 'Reverse color',
+      table: { category: customProperties },
+    },
     style: {
       control: 'object',
       description: 'Style from button',
-      table: { subcategory: standardProperties },
+      table: { category: standardProperties },
     },
   },
 

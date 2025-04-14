@@ -3,6 +3,8 @@ import { TSlideTextStyle } from '../../SlideText/slideText.css';
 
 export type TSlideTextProps = {
   children: ReactNode | string;
+  endColorCustom: string;
+  startColorCustom: string;
 } & TSlideTextStyle &
   ComponentProps<'h1'>;
 

@@ -31,50 +31,50 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
       control: 'select',
       options: Object.keys(paddingCss),
       description: 'Button padding size',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
 
     transitionSpeedVariant: {
       control: 'select',
       options: Object.keys(transitionSpeedVariant),
       description: 'Transition speed for animations',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
     transitionFunctionVariant: {
       control: 'select',
       options: Object.keys(transitionFunctionVariant),
       description: 'Timing function for animations',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
 
     disabled: {
       control: 'boolean',
       description: 'Disable the button',
-      table: { subcategory: standardProperties },
+      table: { category: standardProperties },
     },
     borderWidth: {
       control: 'select',
       options: Object.keys(borderWidth),
       description: 'Border width size ',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
     borderStyle: {
       control: 'select',
       options: Object.keys(borderStyle),
       description: 'Border width size ',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
     borderRadius: {
       control: 'select',
       options: Object.keys(borderRadius),
       description: 'Border radius property',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
 
     style: {
       control: 'object',
       description: 'Style from button',
-      table: { subcategory: customProperties },
+      table: { category: customProperties },
     },
   },
 
