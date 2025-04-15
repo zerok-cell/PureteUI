@@ -14,7 +14,6 @@ export const Button: TButton = ({
   borderRadius,
   ...props
 }) => {
-  console.log(className);
   return (
     <button
       disabled={disabled}

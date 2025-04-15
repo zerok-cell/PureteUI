@@ -6,6 +6,7 @@ const baseClick = recipe({
     backgroundColor: pureteTheme.colors.primary,
     selectors: {
       '&:active': {
+        // transform: 'translateY(1px)',
         backgroundColor: pureteTheme.colors.active,
       },
     },
