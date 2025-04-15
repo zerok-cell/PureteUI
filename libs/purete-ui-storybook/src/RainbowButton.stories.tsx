@@ -5,8 +5,6 @@ import {
   borderWidth,
   paddingCss,
   RainbowButton,
-  transitionFunctionVariant,
-  transitionSpeedVariant,
 } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
@@ -33,16 +31,19 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
       table: { category: customProperties },
     },
 
-    transitionSpeedVariant: {
-      control: 'select',
-      options: Object.keys(transitionSpeedVariant),
-      description: 'Transition speed for animations',
+    gradientBlur: {
+      control: 'text',
+      description: 'Gradient blur, with px',
       table: { category: customProperties },
     },
-    transitionFunctionVariant: {
-      control: 'select',
-      options: Object.keys(transitionFunctionVariant),
-      description: 'Timing function for animations',
+    rainbowGradientColor: {
+      control: 'text',
+      description: 'Gradient blur, with px',
+      table: { category: customProperties },
+    },
+    gradientHeight: {
+      control: 'text',
+      description: 'Gradient height',
       table: { category: customProperties },
     },
 

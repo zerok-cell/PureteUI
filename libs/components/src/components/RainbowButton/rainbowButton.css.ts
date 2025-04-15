@@ -1,20 +1,20 @@
 import { recipe } from '@vanilla-extract/recipes';
 import { createVar, keyframes } from '@vanilla-extract/css';
 
-export const rainbowGradient = createVar();
-export const gradientAniamtion = keyframes({
+export const rainbowGradientVariable = createVar();
+export const gradientAnimation = keyframes({
   // '0%': { backgroundPosition: '0% 0%' },
   '50%': {
     backgroundPosition: '100% 50%',
   },
 });
 
-export const gradientBlur = createVar({
+export const gradientBlurVariable = createVar({
   syntax: '<number>',
   inherits: false,
   initialValue: '3px',
 });
-export const gradientHeight = createVar({
+export const gradientHeightVariable = createVar({
   syntax: '<number>',
   inherits: false,
   initialValue: '30%',
@@ -23,7 +23,7 @@ export const gradientHeight = createVar({
 export const rainbowButtonStyle = recipe({
   base: {
     vars: {
-      [rainbowGradient]: `linear-gradient(60deg,
+      [rainbowGradientVariable]: `linear-gradient(60deg,
     hsl(225, 86%, 66%),
     hsl(267, 84%, 67%),
     hsl(316, 85%, 67%),
@@ -33,8 +33,8 @@ export const rainbowButtonStyle = recipe({
     hsl(146, 85%, 67%),
     hsl(178, 86%, 66%)
 )`,
-      [gradientBlur]: '0.7px',
-      [gradientHeight]: '50%',
+      [gradientBlurVariable]: '0.7px',
+      [gradientHeightVariable]: '50%',
     },
     position: 'inherit',
     transition: 'inherit',
@@ -46,18 +46,18 @@ export const rainbowButtonStyle = recipe({
         backgroundPosition: '0% 50%',
         backgroundSize: '300% 300%',
         content: '',
-        height: gradientHeight,
+        height: gradientHeightVariable,
         position: 'absolute',
         bottom: '-1px',
         left: '0px',
         right: '0px',
-        filter: `blur(${gradientBlur})`,
+        filter: `blur(${gradientBlurVariable})`,
         transition: 'inherit',
         borderRadius: 'inherit',
-        backgroundImage: rainbowGradient, // ✅ Теперь цвет должен быть радужным!
+        backgroundImage: rainbowGradientVariable, // ✅ Теперь цвет должен быть радужным!
         zIndex: '-1',
         animationDuration: '4s',
-        animationName: gradientAniamtion,
+        animationName: gradientAnimation,
         animationIterationCount: 'infinite',
         animationDirection: 'alternate',
       },
