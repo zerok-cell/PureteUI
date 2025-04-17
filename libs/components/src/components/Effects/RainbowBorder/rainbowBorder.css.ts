@@ -6,8 +6,7 @@ import {
 } from '../../../css';
 
 export const rainbowGradientVariable = createVar();
-export const gradientAnimation = keyframes({
-  // '0%': { backgroundPosition: '0% 0%' },
+const gradientAnimation = keyframes({
   '0%': { backgroundPosition: '0% 50%' },
   '50%': { backgroundPosition: '100% 100%' },
   '100%': { backgroundPosition: '0% 100%' },
@@ -23,7 +22,7 @@ export const gradientHeightVariable = createVar({
   inherits: false,
   initialValue: '30%',
 });
-export const borderSize = createVar({
+export const borderSizeVariable = createVar({
   syntax: '<number>',
   inherits: false,
   initialValue: '2px',
@@ -41,20 +40,19 @@ export const rainbowBorderStyle = recipe({
     hsl(146, 85%, 67%),
     hsl(178, 86%, 66%)
 )`,
-      [gradientBlurVariable]: '0px',
-      [gradientHeightVariable]: '100%',
-      [borderSize]: '23px',
+      [gradientBlurVariable]: '2px',
+      [gradientHeightVariable]: '50%',
+      [borderSizeVariable]: '2px',
     },
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+
     position: 'relative',
-    padding: borderSize,
+    padding: borderSizeVariable,
     width: 'max-content',
     height: 'max-content',
     selectors: {
       '&:after': {
         content: '',
+        borderRadius: 6,
         filter: `blur(${gradientBlurVariable})`,
         position: 'absolute',
         zIndex: '-1',
