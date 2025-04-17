@@ -23,6 +23,7 @@ export const RainbowButton: TRainbowButton = ({
   gradientBlur,
   rainbowGradientColor,
   style,
+  className,
   ...props
 }) => {
   const { borderStyle, ...filteredProps } = props;
@@ -37,7 +38,7 @@ export const RainbowButton: TRainbowButton = ({
           }),
           ...style,
         }}
-        className={rainbowButtonStyle()}
+        className={`${rainbowButtonStyle()} ${className}`}
         borderStyle={'none'}
         {...filteredProps}
       >

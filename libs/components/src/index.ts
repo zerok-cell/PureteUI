@@ -1,3 +1,4 @@
+export * from './components/Effects/RainbowBorder/RainbowBorder';
 export * from './components/RainbowButton/RainbowButton';
 export * from './components/Skeleton/SkeletonBlock/SkeletonBlock';
 export * from './css';

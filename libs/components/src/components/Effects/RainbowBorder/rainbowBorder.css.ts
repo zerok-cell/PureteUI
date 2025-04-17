@@ -1,0 +1,103 @@
+import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
+import { createVar, keyframes } from '@vanilla-extract/css';
+import {
+  transitionFunctionVariant,
+  transitionSpeedVariant,
+} from '../../../css';
+
+export const rainbowGradientVariable = createVar();
+export const gradientAnimation = keyframes({
+  // '0%': { backgroundPosition: '0% 0%' },
+  '0%': { backgroundPosition: '0% 50%' },
+  '50%': { backgroundPosition: '100% 100%' },
+  '100%': { backgroundPosition: '0% 100%' },
+});
+
+export const gradientBlurVariable = createVar({
+  syntax: '<number>',
+  inherits: false,
+  initialValue: '3px',
+});
+export const gradientHeightVariable = createVar({
+  syntax: '<number>',
+  inherits: false,
+  initialValue: '30%',
+});
+export const borderSize = createVar({
+  syntax: '<number>',
+  inherits: false,
+  initialValue: '2px',
+});
+export const rainbowBorderStyle = recipe({
+  base: {
+    vars: {
+      [rainbowGradientVariable]: `linear-gradient(60deg,
+    hsl(225, 86%, 66%),
+    hsl(267, 84%, 67%),
+    hsl(316, 85%, 67%),
+    hsl(359, 85%, 67%),
+    hsl(41, 84%, 67%),
+    hsl(97, 85%, 67%),
+    hsl(146, 85%, 67%),
+    hsl(178, 86%, 66%)
+)`,
+      [gradientBlurVariable]: '0px',
+      [gradientHeightVariable]: '100%',
+      [borderSize]: '23px',
+    },
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    padding: borderSize,
+    width: 'max-content',
+    height: 'max-content',
+    selectors: {
+      '&:after': {
+        content: '',
+        filter: `blur(${gradientBlurVariable})`,
+        position: 'absolute',
+        zIndex: '-1',
+        height: gradientHeightVariable,
+        backgroundPosition: '0% 0%',
+        backgroundSize: '300% 300%',
+        animationDuration: '4s',
+        animationName: gradientAnimation,
+        animationIterationCount: 'infinite',
+        animationDirection: 'alternate',
+        left: '0px',
+        right: '0px',
+        backgroundImage: rainbowGradientVariable,
+        transition: 'inherit',
+      },
+    },
+  },
+
+  variants: {
+    transitionFunctionVariant,
+    transitionSpeedVariant,
+    staticAnimation: {
+      true: {
+        selectors: {
+          '&:after': {
+            animationPlayState: 'paused',
+          },
+        },
+      },
+      false: {
+        selectors: {
+          '&:after': {
+            animationPlayState: '',
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    staticAnimation: false,
+    transitionSpeedVariant: 3,
+    transitionFunctionVariant: 'ease',
+  },
+});
+
+export type TRainbowBorderStyle = RecipeVariants<typeof rainbowBorderStyle>;
