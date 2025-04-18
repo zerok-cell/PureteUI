@@ -98,4 +98,6 @@ export const rainbowBorderStyle = recipe({
   },
 });
 
-export type TRainbowBorderStyle = RecipeVariants<typeof rainbowBorderStyle>;
+export type TRainbowBorderStyle = {
+  rainbowStyle?: RecipeVariants<typeof rainbowBorderStyle>;
+};

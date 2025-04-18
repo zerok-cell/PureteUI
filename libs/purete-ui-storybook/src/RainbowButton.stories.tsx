@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  borderRadius,
-  borderStyle,
-  borderWidth,
-  paddingCss,
-  RainbowButton,
-} from '@purete-ui/components';
+import { paddingCss, RainbowButton } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 const component = RainbowButton;
@@ -31,43 +25,36 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
       table: { category: customProperties },
     },
 
-    gradientBlur: {
-      control: 'text',
-      description: 'Gradient blur, with px',
-      table: { category: customProperties },
-    },
-    rainbowGradientColor: {
-      control: 'text',
-      description: 'Gradient blur, with px',
-      table: { category: customProperties },
-    },
-    gradientHeight: {
-      control: 'text',
-      description: 'Gradient height',
-      table: { category: customProperties },
-    },
-
     disabled: {
       control: 'boolean',
       description: 'Disable the button',
       table: { category: standardProperties },
     },
-    borderWidth: {
-      control: 'select',
-      options: Object.keys(borderWidth),
-      description: 'Border width size ',
+    gradient: {
+      control: 'object',
+      description: `Градиентные свойства рамки. Объект включает:
+- borderSize: размер рамки (напр. '2px')
+- gradientHeight: высота градиента (напр. '50%')
+- gradientBlur: степень размытия градиента (напр. '2px')
+- rainbowGradient: CSS-градиент (напр. linear-gradient(...))`,
       table: { category: customProperties },
     },
-    borderStyle: {
-      control: 'select',
-      options: Object.keys(borderStyle),
-      description: 'Border width size ',
+    flex: {
+      control: 'object',
+      description: `Флекс свойства обёртки:
+- justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
+- align: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
+- direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
+- wrap: 'noWrap' | 'wrap' | 'wrapReverse'`,
       table: { category: customProperties },
     },
-    borderRadius: {
-      control: 'select',
-      options: Object.keys(borderRadius),
-      description: 'Border radius property',
+
+    rainbowStyle: {
+      control: 'object',
+      description: `Настройки анимации и переходов рамки:
+- staticAnimation: true | false — остановка анимации
+- transitionFunctionVariant: тип функции перехода
+- transitionSpeedVariant: скорость перехода (число от 1 до 5)`,
       table: { category: customProperties },
     },
 

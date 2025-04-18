@@ -1,75 +1,56 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  Button,
-  RainbowBorder,
-  transitionFunctionVariant,
-  transitionSpeedVariant,
-} from '@purete-ui/components';
+import { Button, RainbowBorder } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 const component = RainbowBorder;
 const customProperties = 'Custom properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
-  args: {},
+  args: {
+    flex: {},
+  },
 
   argTypes: {
-    staticAnimation: {
-      control: { type: 'boolean' },
-      description: 'Отключает анимацию градиента, делая его статичным',
+    gradient: {
+      control: 'object',
+      description: `Градиентные свойства рамки. Объект включает:
+- borderSize: размер рамки (напр. '2px')
+- gradientHeight: высота градиента (напр. '50%')
+- gradientBlur: степень размытия градиента (напр. '2px')
+- rainbowGradient: CSS-градиент (напр. linear-gradient(...))`,
       table: { category: customProperties },
     },
-    justify: {
-      control: { type: 'select' },
-      options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
-      description:
-        'Горизонтальное выравнивание вложенного контента внутри рамки',
+    flex: {
+      control: 'object',
+      description: `Флекс свойства обёртки:
+- justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
+- align: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
+- direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
+- wrap: 'noWrap' | 'wrap' | 'wrapReverse'`,
       table: { category: customProperties },
     },
-    align: {
-      control: { type: 'select' },
-      options: ['start', 'center', 'end', 'stretch', 'baseline'],
-      description: 'Вертикальное выравнивание вложенного контента внутри рамки',
+
+    rainbowStyle: {
+      control: 'object',
+      description: `Настройки анимации и переходов рамки:
+- staticAnimation: true | false — остановка анимации
+- transitionFunctionVariant: тип функции перехода
+- transitionSpeedVariant: скорость перехода (число от 1 до 5)`,
       table: { category: customProperties },
     },
-    direction: {
-      control: { type: 'select' },
-      options: ['row', 'column', 'rowReverse', 'columnReverse'],
-      description: 'Направление размещения вложенного контента (основа флекса)',
-      table: { category: customProperties },
+    children: {
+      control: false,
+      description: 'Вложенный элемент, к которому применяется обводка',
+      table: { category: 'Base' },
     },
-    wrap: {
-      control: { type: 'select' },
-      options: ['noWrap', 'wrap', 'wrapReverse'],
-      description: 'Управление переносом строк для контента внутри рамки',
-      table: { category: customProperties },
+    className: {
+      control: 'text',
+      description: 'Дополнительные CSS классы',
+      table: { category: 'Base' },
     },
-    borderSize: {
-      control: { type: 'text' },
-      description: 'Толщина градиентной рамки (например, 2px)',
-      table: { category: customProperties },
-    },
-    gradientBlur: {
-      control: { type: 'text' },
-      description: 'Значение размытия градиента (например, 4px)',
-      table: { category: customProperties },
-    },
-    gradientHeight: {
-      control: { type: 'text' },
-      description: 'Высота псевдоэлемента с градиентом (например, 100%)',
-      table: { category: customProperties },
-    },
-    transitionSpeedVariant: {
-      control: 'select',
-      options: Object.keys(transitionSpeedVariant),
-      description: 'Скорость анимации градиента (напр. fast, normal, slow)',
-      table: { category: customProperties },
-    },
-    transitionFunctionVariant: {
-      control: 'select',
-      options: Object.keys(transitionFunctionVariant),
-      description:
-        'Функция временной кривой для анимации (ease, linear и т.д.)',
-      table: { category: customProperties },
+    style: {
+      control: 'object',
+      description: 'Inline-стили для внешней обёртки',
+      table: { category: 'Base' },
     },
   },
 
@@ -81,13 +62,19 @@ type Story = StoryObj<typeof component>;
 
 export const Primary: Story = {
   args: {
-    children: <Button borderStyle={'none'}>dwd</Button>,
-    align: 'center',
-    borderSize: '1px',
-    gradientBlur: '2px\n',
-    gradientHeight: '100%',
-    justify: 'center',
-    direction: 'row',
-    className: 'dwdwdw',
+    children: <Button borderStyle={'none'}>Rainbow Button</Button>,
+
+    gradient: {
+      borderSize: '1px',
+      gradientBlur: '2px',
+      gradientHeight: '30%',
+    },
+    className: 'Rainbow Button',
+
+    flex: {
+      justify: 'center',
+      direction: 'row',
+      align: 'end',
+    },
   },
 };

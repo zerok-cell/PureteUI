@@ -40,4 +40,6 @@ export const flexContainer = recipe({
   },
 });
 
-export type TFlexContainerVariants = RecipeVariants<typeof flexContainer>;
+export type TFlexContainerVariants = {
+  flex: RecipeVariants<typeof flexContainer>;
+};

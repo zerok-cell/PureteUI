@@ -1,53 +1,23 @@
-import {
-  cloneElement,
-  ComponentProps,
-  FC,
-  isValidElement,
-  useEffect,
-  useState,
-} from 'react';
+import { cloneElement, isValidElement, useEffect, useState } from 'react';
 import {
   borderSizeVariable,
   gradientBlurVariable,
   gradientHeightVariable,
   rainbowBorderStyle,
   rainbowGradientVariable,
-  TRainbowBorderStyle,
 } from './rainbowBorder.css';
-import {
-  flexContainer,
-  TFlexContainerVariants,
-} from '../../../css/variants/flex.css';
+import { flexContainer } from '../../../css/variants/flex.css';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-
-type TPropsState = string | null | undefined;
-
-type TRainbowBorderProps = {
-  borderSize?: TPropsState;
-  gradientHeight?: TPropsState;
-  gradientBlur?: TPropsState;
-  rainbowGradient: TPropsState;
-} & ComponentProps<'div'> &
-  TRainbowBorderStyle &
-  TFlexContainerVariants;
-
-type TRainbowBorder = FC<TRainbowBorderProps>;
+import { TRainbowBorder } from '../../../types';
 
 export const RainbowBorder: TRainbowBorder = ({
   children,
   className,
-  staticAnimation,
+  rainbowStyle,
   style,
-  justify,
-  align,
-  direction,
-  borderSize,
-  wrap,
-  rainbowGradient,
-  gradientBlur,
-  gradientHeight,
-  transitionFunctionVariant,
-  transitionSpeedVariant,
+  flex,
+  gradient,
+
   ...props
 }) => {
   const [component, setComponent] = useState<ReturnType<typeof cloneElement>>();
@@ -61,25 +31,21 @@ export const RainbowBorder: TRainbowBorder = ({
     <div
       style={{
         ...assignInlineVars({
-          [rainbowGradientVariable]: rainbowGradient,
-          [gradientBlurVariable]: gradientBlur,
-          [borderSizeVariable]: borderSize,
-          [gradientHeightVariable]: gradientHeight,
+          [rainbowGradientVariable]: gradient?.rainbowGradient,
+          [gradientBlurVariable]: gradient?.gradientBlur,
+          [borderSizeVariable]: gradient?.borderSize,
+          [gradientHeightVariable]: gradient?.gradientHeight,
         }),
+        ...style,
       }}
       className={`
-        ${flexContainer({
-          justify,
-          align,
-          direction,
-          wrap,
-        })}
+        ${flexContainer({ ...flex })}
+
         ${rainbowBorderStyle({
-          transitionFunctionVariant,
-          transitionSpeedVariant,
-          staticAnimation,
+          ...rainbowStyle,
         })}
         ${className} `}
+      {...props}
     >
       {component}
     </div>

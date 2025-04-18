@@ -1,50 +1,35 @@
-import {
-  gradientBlurVariable,
-  gradientHeightVariable,
-  rainbowButtonStyle,
-  rainbowGradientVariable,
-} from './rainbowButton.css';
 import Button from '../Button/Button';
-import { spanStyle } from './spanStyle.css';
-import { TButton } from '../../types';
+import { TButton, TRainbowBorderProps } from '../../types';
 import { FC } from 'react';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
+import RainbowBorder from '../Effects/RainbowBorder/RainbowBorder';
 
-type TRainbowButtonProps = Parameters<TButton>[0] & {
-  gradientBlur: string;
-  gradientHeight: string;
-  rainbowGradientColor: string;
-};
+type TRainbowButtonProps = Parameters<TButton>[0] & TRainbowBorderProps;
 type TRainbowButton = FC<TRainbowButtonProps>;
 
 export const RainbowButton: TRainbowButton = ({
   children,
-  gradientHeight,
-  gradientBlur,
-  rainbowGradientColor,
+  rainbowStyle,
+  gradient,
+  flex,
   style,
   className,
   ...props
 }) => {
-  const { borderStyle, ...filteredProps } = props;
   return (
-    <span className={spanStyle}>
+    // <span className={spanStyle}>
+    <RainbowBorder flex={flex} rainbowStyle={rainbowStyle} gradient={gradient}>
       <Button
         style={{
-          ...assignInlineVars({
-            [gradientHeightVariable]: gradientHeight,
-            [gradientBlurVariable]: gradientBlur,
-            [rainbowGradientVariable]: rainbowGradientColor,
-          }),
           ...style,
         }}
-        className={`${rainbowButtonStyle()} ${className}`}
+        className={`${className}`}
         borderStyle={'none'}
-        {...filteredProps}
+        {...props}
       >
         {children}Купить
       </Button>
-    </span>
+    </RainbowBorder>
+    // </span>
   );
 };
 
