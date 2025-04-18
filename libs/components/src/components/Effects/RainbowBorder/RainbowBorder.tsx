@@ -53,13 +53,7 @@ export const RainbowBorder: TRainbowBorder = ({
   const [component, setComponent] = useState<ReturnType<typeof cloneElement>>();
   useEffect(() => {
     if (isValidElement(children)) {
-      setComponent(
-        cloneElement(children, {
-          style: {
-            border: 'none',
-          },
-        })
-      );
+      setComponent(cloneElement(children));
     }
   }, [children]);
 
@@ -74,17 +68,18 @@ export const RainbowBorder: TRainbowBorder = ({
         }),
       }}
       className={`
-
         ${flexContainer({
           justify,
           align,
           direction,
           wrap,
-        })} ${rainbowBorderStyle({
-        transitionFunctionVariant,
-        transitionSpeedVariant,
-        staticAnimation,
-      })} ${className} `}
+        })}
+        ${rainbowBorderStyle({
+          transitionFunctionVariant,
+          transitionSpeedVariant,
+          staticAnimation,
+        })}
+        ${className} `}
     >
       {component}
     </div>

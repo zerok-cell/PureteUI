@@ -9,64 +9,66 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 const component = RainbowBorder;
 const customProperties = 'Custom properties';
-const standardProperties = 'Standard properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
   args: {},
 
   argTypes: {
     staticAnimation: {
       control: { type: 'boolean' },
+      description: 'Отключает анимацию градиента, делая его статичным',
+      table: { category: customProperties },
     },
     justify: {
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+      description:
+        'Горизонтальное выравнивание вложенного контента внутри рамки',
+      table: { category: customProperties },
     },
     align: {
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['start', 'center', 'end', 'stretch', 'baseline'],
+      description: 'Вертикальное выравнивание вложенного контента внутри рамки',
+      table: { category: customProperties },
     },
     direction: {
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['row', 'column', 'rowReverse', 'columnReverse'],
+      description: 'Направление размещения вложенного контента (основа флекса)',
+      table: { category: customProperties },
     },
     wrap: {
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['noWrap', 'wrap', 'wrapReverse'],
+      description: 'Управление переносом строк для контента внутри рамки',
+      table: { category: customProperties },
     },
     borderSize: {
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
+      description: 'Толщина градиентной рамки (например, 2px)',
+      table: { category: customProperties },
     },
     gradientBlur: {
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
+      description: 'Значение размытия градиента (например, 4px)',
+      table: { category: customProperties },
     },
     gradientHeight: {
-      description: 'Gradient height (after pseudo element)',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
+      description: 'Высота псевдоэлемента с градиентом (например, 100%)',
+      table: { category: customProperties },
     },
     transitionSpeedVariant: {
       control: 'select',
       options: Object.keys(transitionSpeedVariant),
-      description: 'Transition speed for animations',
+      description: 'Скорость анимации градиента (напр. fast, normal, slow)',
       table: { category: customProperties },
     },
     transitionFunctionVariant: {
       control: 'select',
       options: Object.keys(transitionFunctionVariant),
-      description: 'Timing function for animations',
+      description:
+        'Функция временной кривой для анимации (ease, linear и т.д.)',
       table: { category: customProperties },
     },
   },
@@ -79,7 +81,7 @@ type Story = StoryObj<typeof component>;
 
 export const Primary: Story = {
   args: {
-    children: <Button>dwd</Button>,
+    children: <Button borderStyle={'none'}>dwd</Button>,
     align: 'center',
     borderSize: '1px',
     gradientBlur: '2px\n',
