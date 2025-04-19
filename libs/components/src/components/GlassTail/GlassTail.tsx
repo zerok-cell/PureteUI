@@ -12,6 +12,7 @@ export const GlassTail: TGlassTail = ({
   style,
   width,
   height,
+  className,
   borderColor,
   ...props
 }) => {
@@ -26,12 +27,12 @@ export const GlassTail: TGlassTail = ({
         }),
         ...style,
       }}
-      className={glassTailStyleCss({
+      className={`${glassTailStyleCss({
         paddingCss,
         borderWidth,
         borderStyle,
         borderRadius,
-      })}
+      })} ${className}`}
       {...props}
     >
       {children}

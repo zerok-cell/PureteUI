@@ -17,14 +17,14 @@ export const Button: TButton = ({
   return (
     <button
       disabled={disabled}
-      className={`${className} ${buttonStyle({
+      className={`${buttonStyle({
         transitionSpeedVariant,
         paddingCss,
         transitionFunctionVariant,
         borderWidth,
         borderStyle,
         borderRadius,
-      })}`}
+      })} ${className} `}
       {...props}
     >
       {conditionReturn({ variable: children, returnIfFalse: 'Button' })}

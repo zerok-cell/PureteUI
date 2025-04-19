@@ -5,9 +5,8 @@ type TBackgroundColor = CSSProperties['backgroundColor'];
 export type TSkeletonBlockProps = ComponentProps<'div'> &
   TSkeletonBlockStyleCss &
   Required<Pick<CSSProperties, 'width' | 'height'>> & {
-  fill?: boolean;
-  glareColor?: TBackgroundColor;
-  containerColor?: TBackgroundColor;
-};
+    glareColor?: TBackgroundColor;
+    containerColor?: TBackgroundColor;
+  };
 
 export type TSkeletonBlock = FC<TSkeletonBlockProps>;

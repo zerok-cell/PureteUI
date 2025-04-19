@@ -10,7 +10,6 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 export const SkeletonBlock: TSkeletonBlock = ({
   children,
-  fill,
   height,
   width,
   containerColor,
