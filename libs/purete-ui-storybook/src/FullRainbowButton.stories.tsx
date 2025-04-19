@@ -1,20 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { RainbowBorder } from '@purete-ui/components';
+import { FullRainbowButton, paddingCss } from '@purete-ui/components';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-const component = RainbowBorder;
+const component = FullRainbowButton;
 const customProperties = 'Custom properties';
+const standardProperties = 'Standard properties';
 const meta: TypeWithDeepControls<Meta<typeof component>> = {
   args: {
-    flex: {},
+    disabled: false,
+    borderRadius: 'sm',
+    borderWidth: 'sm',
+    paddingCss: 'sm',
+    transitionSpeedVariant: 3,
+    transitionFunctionVariant: 'ease',
   },
 
   argTypes: {
+    children: { control: 'text', description: 'Button content' },
+    paddingCss: {
+      control: 'select',
+      options: Object.keys(paddingCss),
+      description: 'Button padding size',
+      table: { category: customProperties },
+    },
+
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the button',
+      table: { category: standardProperties },
+    },
     gradient: {
       control: 'object',
       description: `Градиентные свойства рамки. Объект включает:
 - borderSize: размер рамки (напр. '2px')
-- gradientHeight: высота градиента (напр. '50%')
 - gradientBlur: степень размытия градиента (напр. '2px')
 - rainbowGradient: CSS-градиент (напр. linear-gradient(...))`,
       table: { category: customProperties },
@@ -37,51 +55,18 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
 - transitionSpeedVariant: скорость перехода (число от 1 до 5)`,
       table: { category: customProperties },
     },
-    children: {
-      control: false,
-      description: 'Вложенный элемент, к которому применяется обводка',
-      table: { category: 'Base' },
-    },
-    className: {
-      control: 'text',
-      description: 'Дополнительные CSS классы',
-      table: { category: 'Base' },
-    },
+
     style: {
       control: 'object',
-      description: 'Inline-стили для внешней обёртки',
-      table: { category: 'Base' },
+      description: 'Style from button',
+      table: { category: customProperties },
     },
   },
 
   component: component,
-  title: 'RainbowBorder',
+  title: 'FullRainbowButton',
 };
 export default meta;
 type Story = StoryObj<typeof component>;
 
-export const Primary: Story = {
-  args: {
-    children: (
-      <div
-        style={{
-          height: '200px',
-          width: '200px',
-        }}
-      ></div>
-    ),
-
-    gradient: {
-      borderSize: '1px',
-      gradientBlur: '2px',
-      gradientHeight: '30%',
-    },
-    className: 'Rainbow Button',
-
-    flex: {
-      justify: 'center',
-      direction: 'row',
-      align: 'end',
-    },
-  },
-};
+export const Primary: Story = {};

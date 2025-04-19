@@ -4,13 +4,15 @@ import { TFlexContainerVariants } from '../../css/variants/flex.css';
 
 type TPropsState = string | null | undefined;
 
+export type TGradient = {
+  borderSize?: TPropsState;
+  gradientHeight?: TPropsState;
+  gradientBlur?: TPropsState;
+  rainbowGradient?: TPropsState;
+};
+
 export type TRainbowBorderProps = {
-  gradient?: {
-    borderSize?: TPropsState;
-    gradientHeight?: TPropsState;
-    gradientBlur?: TPropsState;
-    rainbowGradient?: TPropsState;
-  };
+  gradient?: TGradient;
 } & ComponentProps<'div'> &
   TRainbowBorderStyle &
   TFlexContainerVariants;

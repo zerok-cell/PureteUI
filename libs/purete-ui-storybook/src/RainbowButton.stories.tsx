@@ -9,7 +9,6 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
   args: {
     disabled: false,
     borderRadius: 'sm',
-    borderStyle: 'solid',
     borderWidth: 'sm',
     paddingCss: 'sm',
     transitionSpeedVariant: 3,

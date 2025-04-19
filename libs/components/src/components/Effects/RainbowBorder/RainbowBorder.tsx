@@ -17,7 +17,6 @@ export const RainbowBorder: TRainbowBorder = ({
   style,
   flex,
   gradient,
-
   ...props
 }) => {
   const [component, setComponent] = useState<ReturnType<typeof cloneElement>>();

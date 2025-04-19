@@ -1,9 +1,10 @@
 import Button from '../Button/Button';
-import { TButton, TRainbowBorderProps } from '../../types';
+import { TButton, TGradient, TRainbowBorderProps } from '../../types';
 import { FC } from 'react';
 import RainbowBorder from '../Effects/RainbowBorder/RainbowBorder';
 
-type TRainbowButtonProps = Parameters<TButton>[0] & TRainbowBorderProps;
+type TRainbowButtonProps = Omit<Parameters<TButton>[0], 'borderStyle'> &
+  Partial<TRainbowBorderProps>;
 type TRainbowButton = FC<TRainbowButtonProps>;
 
 export const RainbowButton: TRainbowButton = ({
@@ -16,7 +17,6 @@ export const RainbowButton: TRainbowButton = ({
   ...props
 }) => {
   return (
-    // <span className={spanStyle}>
     <RainbowBorder flex={flex} rainbowStyle={rainbowStyle} gradient={gradient}>
       <Button
         style={{
@@ -26,10 +26,37 @@ export const RainbowButton: TRainbowButton = ({
         borderStyle={'none'}
         {...props}
       >
-        {children}Купить
+        {children}
       </Button>
     </RainbowBorder>
-    // </span>
+  );
+};
+
+type TFullRainbowButton = Omit<TRainbowButtonProps, 'gradient'> & {
+  gradient?: Omit<TGradient, 'gradientHeight'>;
+};
+
+export const FullRainbowButton: FC<TFullRainbowButton> = ({
+  gradient,
+  rainbowStyle,
+  flex,
+  children,
+  ...props
+}) => {
+  return (
+    <RainbowButton
+      flex={flex}
+      rainbowStyle={rainbowStyle}
+      gradient={{
+        borderSize: '1px',
+        gradientBlur: '2px',
+        gradientHeight: '100%',
+        ...gradient,
+      }}
+      {...props}
+    >
+      {children}
+    </RainbowButton>
   );
 };
 
