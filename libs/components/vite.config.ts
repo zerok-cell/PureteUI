@@ -4,12 +4,14 @@ import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/components',
   plugins: [
     react(),
+    svgr(),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
