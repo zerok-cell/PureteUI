@@ -1,14 +1,12 @@
 import { createContext } from 'react';
-import { TSelectorContext } from '../types/providers/selector.types';
+import { TSelectorContext } from '../types';
 
-export const selectorContext = createContext<TSelectorContext>({
+export const DEFAULT_CONTEXT_VALUE: TSelectorContext = {
   active: false,
-  select: {
-    value: {
-      text: undefined,
-    },
-    id: undefined,
-  },
-  setSelect: undefined,
-  setActivate: undefined,
-});
+  select: null,
+  setSelect: () => undefined,
+  setActivate: () => undefined,
+};
+export const selectorContext = createContext<TSelectorContext>(
+  DEFAULT_CONTEXT_VALUE
+);
