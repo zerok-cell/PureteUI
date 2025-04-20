@@ -3,6 +3,7 @@ import { ButtonSelector } from './ButtonSelector';
 import { MenuSelector } from './MenuSelector';
 import { TSelectorProps } from '../../types/selector/selector.types';
 import { FC } from 'react';
+import { flexContainer } from '../../css/variants/flex.css';
 
 /**
  * @description Custom React selector with very many customize via props
@@ -20,9 +21,19 @@ export const Selector: FC<TSelectorProps> = ({
 }) => {
   return (
     <SelectorProvider>
-      <div>
+      <div
+        style={{
+          height: 'auto',
+          position: 'relative',
+        }}
+        className={`${flexContainer({
+          direction: 'column',
+          align: 'center',
+          justify: 'end',
+        })}`}
+      >
         <ButtonSelector {...propsButton} />
-        <MenuSelector />
+        <MenuSelector items={items} />
       </div>
     </SelectorProvider>
   );

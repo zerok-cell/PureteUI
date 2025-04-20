@@ -39,5 +39,7 @@ export const Primary: Story = {
     text: {
       children: 'Selector',
     },
+
+    items: ["dawd", "dwdw", 12312]
   },
 };

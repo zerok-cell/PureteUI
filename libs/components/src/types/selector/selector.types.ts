@@ -1,6 +1,6 @@
 import { TButtonSelectorProps } from './buttonSelector.types';
+import { TMenuSelectorProps } from './menuSelector.types';
 
 export type TSelectorProps = TButtonSelectorProps & {
-  items?: string[];
   setValue?: () => void;
-};
+} & TMenuSelectorProps;

@@ -5,7 +5,7 @@ import { TButtonSelector } from '../../types/selector/buttonSelector.types';
 import { arrowStyle } from './arrow.css';
 import { pureteTheme } from '../../css';
 import { useGetSelectorState } from '../../hooks/useGetSelectorState';
-import { useMergeFunction } from '../../hooks/useMergeFunction';
+import { useMergeFunction } from '../../hooks';
 
 export const ButtonSelector: TButtonSelector = ({
   arrow,
@@ -20,7 +20,13 @@ export const ButtonSelector: TButtonSelector = ({
   );
 
   return (
-    <Button {...button} onClick={onClickLocal}>
+    <Button
+      style={{
+        width: '100%',
+      }}
+      {...button}
+      onClick={onClickLocal}
+    >
       <div
         className={flexContainer({
           direction: 'row',
