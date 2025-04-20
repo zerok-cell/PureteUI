@@ -1,0 +1,27 @@
+{
+  "entryPoints": [
+    "libs/*"
+  ],
+  "$schema": "https://typedoc.org/schema.json",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "excludeProtected": false,
+  "categorizeByGroup": true,
+  "sort": [
+    "source-order"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strictNullChecks": false
+  },
+  "skipErrorChecking": true,
+  "cleanOutputDir": true,
+  "defaultCategory": "General",
+  "gitRevision": "main",
+  "disableSources": false,
+  "hideGenerator": true,
+  "logLevel": "Info",
+  "name": "PureteUI",
+  "entryPointStrategy": "packages",
+  "includeVersion": false
+}

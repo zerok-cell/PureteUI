@@ -8,6 +8,22 @@ import {
 import { TSkeletonBlock } from '../../../types';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+/**
+ *
+ * @param children
+ * @param height
+ * @param width
+ * @param containerColor Color skeleton
+ * @param style
+ * @param glareColor The color of the periodic glare in `Skeleton`
+ * @param borderRadius
+ * @param paddingCss
+ * @param transitionFunctionVariant
+ * @param transitionSpeedVariant
+ * @group Component
+ * @returns JSX.Element
+ * @constructor
+ */
 export const SkeletonBlock: TSkeletonBlock = ({
   children,
   height,

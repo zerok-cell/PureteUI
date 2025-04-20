@@ -4,6 +4,8 @@ import { SyntheticEvent, useCallback } from 'react';
 type FTEvent<TEvent extends SyntheticEvent> = (e: TEvent) => void;
 
 /**
+ * @function
+ * @group Hooks
  * @description Hook for merge function and infer one function
  * @param firstFunction The first function to be called
  * @param secondFunction The following function can be an array of functions that or that will be called

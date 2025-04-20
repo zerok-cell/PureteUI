@@ -10,7 +10,7 @@ import { TSelectorContext, TSelectorProvider } from '../types';
  *
  * If a custom value is provided via props, it **must include the `setSelect` and `setActivate` setters**.
  * Otherwise, the provider will internally manage its own state.
- *
+ * @group Providers
  * @param props - React props
  * @param props.children - Children components that will consume the context
  * @param [props.value] - Optional custom context value (must include both setters)

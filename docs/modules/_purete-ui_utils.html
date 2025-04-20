@@ -1,0 +1,197 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@purete-ui/utils - v0.0.2 | PureteUI</title><meta name="description" content="Documentation for PureteUI"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><link rel="stylesheet" href="../assets/typedoc-github-style.css"/></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="../index.html" class="title">PureteUI</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="" aria-current="page">@purete-ui/utils</a></li></ul><h1>Module @purete-ui/utils - v0.0.2</h1></div><section class="tsd-panel tsd-typography"><h1 id="zeroui-utils" class="tsd-anchor-link">zeroui-utils<a href="#zeroui-utils" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1><p>This library was generated with <a href="https://nx.dev">Nx</a>.
+📘 <a href="./docs/index.html">Документация</a></p>
+<h2 id="documentation" class="tsd-anchor-link">Documentation<a href="#documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="conditionreturn" class="tsd-anchor-link"><code>conditionReturn</code><a href="#conditionreturn" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong>Description</strong> - A function that allows you to flexibly check for the
+existence of a variable, with the possibility of extending the check and
+implementing hooks (pre,post)</li>
+<li><strong>Type</strong> - <code>Function</code></li>
+<li><strong>Returns</strong> - Returns either your variable or a backup value.</li>
+<li><strong>Parameters</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>variable</td>
+<td>Set using generics</td>
+<td><code>string</code></td>
+<td>The variable we are checking.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>returnIfFalse</td>
+<td>Set using generics</td>
+<td><code>string</code></td>
+<td>The value to be returned if the variable does not exist or if the checker check fails</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>checker</td>
+<td><code>Function</code></td>
+<td><code>undefined</code></td>
+<td>A function to check the variable's condition.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>hooks</td>
+<td><code>Object</code></td>
+<td><code>{ softError: false }</code></td>
+<td>The hook pair object</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>hooks.preHook</td>
+<td><code>Function</code></td>
+<td><code>undefined</code></td>
+<td>Called before calculating the return value</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>hooks.postHook</td>
+<td><code>Function</code></td>
+<td><code>undefined</code></td>
+<td>Called after deducting the value</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>hooks.softError</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+<td>Determines whether an error will be caused or only logged</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>strict</td>
+<td></td>
+<td><code>ture</code></td>
+<td>A flag to enable strict type checking</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="generatecontract" class="tsd-anchor-link"><code>generateContract</code><a href="#generatecontract" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong>Description</strong> - makes the object's keys empty or prefixed. Suitable for
+generating contracts in extract-vanilla</li>
+<li><strong>Type</strong> - <code>Function</code></li>
+<li><strong>Returns</strong> - Returns the modified object.</li>
+<li><strong>Parameters</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>breakpoints</td>
+<td><code>Record&lt;string, string&gt;</code></td>
+<td><code>object</code></td>
+<td>They can be the output of the &quot;gradationOfValues&quot; function or your personal object, the object can be ANY with a nesting level of 1</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>prefix</td>
+<td><code>string</code></td>
+<td><code>string</code></td>
+<td>The prefix for arranging the values of your keys is created as &quot;prefix+nameKey&quot;</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<pre><code class="typescript"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-8">generateContract</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;@purete-ui/utils&quot;</span><br/><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-9">test</span><span class="hl-1"> = </span><span class="hl-0">generateContract</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-8">one:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">two:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">three:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">})</span><br/><span class="hl-8">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-8">test</span><span class="hl-1">)</span><br/>
+</code><button type="button">Copy</button></pre>
+
+<p>Output:</p>
+<pre><code><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-10">one</span><span class="hl-1">:</span><span class="hl-2">&#39;&#39;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-10">two</span><span class="hl-1">:</span><span class="hl-2">&#39;&#39;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-10">three</span><span class="hl-1">:</span><span class="hl-2">&#39;&#39;</span><br/><span class="hl-1">}</span><br/>
+</code><button>Copy</button></pre>
+
+<p><strong>Example</strong></p>
+<pre><code class="typescript"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-8">generateContract</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;@purete-ui/utils&quot;</span><br/><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-9">test</span><span class="hl-1"> = </span><span class="hl-0">generateContract</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-8">one:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">two:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">three:</span><span class="hl-1"> </span><span class="hl-2">&#39;example&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">}, </span><span class="hl-2">&#39;var&#39;</span><span class="hl-1">)</span><br/><span class="hl-8">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-8">test</span><span class="hl-1">)</span><br/>
+</code><button type="button">Copy</button></pre>
+
+<p>Output:</p>
+<pre><code><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-10">one</span><span class="hl-1">: </span><span class="hl-2">&#39;var-one&#39;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-10">two</span><span class="hl-1">:</span><span class="hl-2">&#39;var-two&#39;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-10">three</span><span class="hl-1">:</span><span class="hl-2">&#39;var-three&#39;</span><br/><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+
+<hr>
+<h3 id="gradationofvalues" class="tsd-anchor-link"><code>gradationOfValues</code><a href="#gradationofvalues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong>Description</strong> - Creates a gradation of values, or a map of values according
+to your template.</li>
+<li><strong>Type</strong> - <code>Function</code></li>
+<li><strong>Returns</strong> - Returns a value gradation object</li>
+<li><strong>Parameters</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initialValue</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>The starting number from which the graduation begins, its value will go to the &quot;xs&quot; key</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>mutation</td>
+<td><code>number</code> or <code>function</code></td>
+<td><code>5</code></td>
+<td>The number with which your value will be graded with each iteration, or a function that takes the current value and returns a new one</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>unit</td>
+<td><code>string</code></td>
+<td><code>px</code></td>
+<td>The unit of measurement of your default value is &quot;px&quot;</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>formater</td>
+<td><code>Function</code></td>
+<td><code>Function</code></td>
+<td>The hook pair object</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<pre><code class="typescript"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-8">gradationOfValues</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;@purete-ui/utils&quot;</span><br/><br/><span class="hl-8">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-0">gradationOfValues</span><span class="hl-1">(</span><span class="hl-11">0</span><span class="hl-1">, </span><span class="hl-11">9</span><span class="hl-1">, </span><span class="hl-2">&#39;rem&#39;</span><span class="hl-1">));</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Output</p>
+<pre><code><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-10">xs</span><span class="hl-1">: </span><span class="hl-2">&#39;0rem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">sm</span><span class="hl-1">: </span><span class="hl-2">&#39;9rem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">md</span><span class="hl-1">: </span><span class="hl-2">&#39;18rem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">lg</span><span class="hl-1">: </span><span class="hl-2">&#39;27rem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">xl</span><span class="hl-1">: </span><span class="hl-2">&#39;36rem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">xxl</span><span class="hl-1">: </span><span class="hl-2">&#39;45rem&#39;</span><br/><span class="hl-1">}</span><br/>
+</code><button>Copy</button></pre>
+
+<p><strong>Example</strong></p>
+<pre><code class="typescript"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-8">gradationOfValues</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;@purete-ui/utils&quot;</span><br/><br/><span class="hl-8">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-0">gradationOfValues</span><span class="hl-1">(</span><span class="hl-11">0</span><span class="hl-1">, </span><span class="hl-11">9</span><span class="hl-1">, </span><span class="hl-2">&#39;rem&#39;</span><span class="hl-1">, (</span><span class="hl-8">v</span><span class="hl-1">, </span><span class="hl-8">u</span><span class="hl-1">) </span><span class="hl-3">=&gt;</span><span class="hl-1"> </span><span class="hl-2">`</span><span class="hl-3">${</span><span class="hl-8">v</span><span class="hl-12"> </span><span class="hl-1">+</span><span class="hl-12"> </span><span class="hl-8">v</span><span class="hl-3">}${</span><span class="hl-8">u</span><span class="hl-3">}${</span><span class="hl-8">u</span><span class="hl-3">}</span><span class="hl-2">`</span><span class="hl-1">));</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Output</p>
+<pre><code><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-10">xs</span><span class="hl-1">: </span><span class="hl-2">&#39;0remrem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">sm</span><span class="hl-1">: </span><span class="hl-2">&#39;18remrem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">md</span><span class="hl-1">: </span><span class="hl-2">&#39;36remrem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">lg</span><span class="hl-1">: </span><span class="hl-2">&#39;54remrem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">xl</span><span class="hl-1">: </span><span class="hl-2">&#39;72remrem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-10">xxl</span><span class="hl-1">: </span><span class="hl-2">&#39;90remrem&#39;</span><br/><span class="hl-1">}</span><br/><br/>
+</code><button>Copy</button></pre>
+
+<hr>
+</section><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Functions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Functions</h2></summary><dl class="tsd-member-summaries"><dt class="tsd-member-summary" id="conditionreturn-1"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/_purete-ui_utils.conditionReturn.html">conditionReturn</a><a href="#conditionreturn-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="generatecontract-1"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/_purete-ui_utils.generateContract.html">generateContract</a><a href="#generatecontract-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="gradationvalues"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/_purete-ui_utils.gradationValues.html">gradationValues</a><a href="#gradationvalues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd></dl></details></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#zeroui-utils"><span>zeroui-<wbr/>utils</span></a><ul><li><a href="#documentation"><span>Documentation</span></a></li><li><ul><li><a href="#conditionreturn"><span>condition<wbr/>Return</span></a></li><li><a href="#generatecontract"><span>generate<wbr/>Contract</span></a></li><li><a href="#gradationofvalues"><span>gradation<wbr/>Of<wbr/>Values</span></a></li></ul></li></ul><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Functions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Functions</summary><div><a href="#conditionreturn-1"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>condition<wbr/>Return</span></a><a href="#generatecontract-1"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>generate<wbr/>Contract</span></a><a href="#gradationvalues"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>gradation<wbr/>Values</span></a></div></details></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="../modules.html">PureteUI</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer></footer><div class="overlay"></div></body></html>

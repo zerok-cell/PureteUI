@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 import { Selector } from '@purete-ui/components';
 
-const component = Selector;
-const customProperties = 'Custom properties';
-const standardProperties = 'Standard properties';
+// const customProperties = 'Custom properties';
+// const standardProperties = 'Standard properties';
 
 const selectorArgType: typeof meta.argTypes = {
   text: {
@@ -15,24 +14,20 @@ const selectorArgType: typeof meta.argTypes = {
     description: 'Style and attributes for icon-arrow (SVG)',
     control: 'object',
   },
-  button: {
-    description: 'Props from button',
-    control: 'object',
-  },
 };
 
-const meta: TypeWithDeepControls<Meta<typeof component>> = {
+const meta: TypeWithDeepControls<Meta<typeof Selector>> = {
   args: {},
 
   argTypes: {
     ...selectorArgType,
   },
 
-  component: component,
+  component: Selector,
   title: 'Selector',
 };
 export default meta;
-type Story = StoryObj<typeof component>;
+type Story = StoryObj<typeof Selector>;
 
 export const Primary: Story = {
   args: {
@@ -40,6 +35,6 @@ export const Primary: Story = {
       children: 'Selector',
     },
 
-    items: ["dawd", "dwdw", 12312]
+    items: ['dawd', 'dwdw'],
   },
 };

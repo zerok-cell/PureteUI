@@ -1,6 +1,5 @@
 import { TConditionReturnHook } from '@purete-ui/types';
 import { typeAffiliation } from './chekers/typeAffiliation.js';
-import * as console from 'node:console';
 
 /**
  * @function

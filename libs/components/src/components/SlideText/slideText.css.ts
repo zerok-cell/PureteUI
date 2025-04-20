@@ -39,20 +39,10 @@ export const slideTextStyle = recipe({
     },
   },
   variants: {
-    reverse: {
-      true: {
-        vars: {
-          //TODO смена цвета идет фиксировано
-          [startColor]: pureteTheme.colors.accent,
-          [endColor]: pureteTheme.colors.primary,
-        },
-      },
-    },
     transitionSpeedVariant,
     transitionFunctionVariant,
   },
   defaultVariants: {
-    reverse: false,
     transitionSpeedVariant: 2,
     transitionFunctionVariant: 'ease',
   },
