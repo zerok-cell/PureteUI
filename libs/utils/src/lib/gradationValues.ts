@@ -41,6 +41,4 @@ const gradationOfValues = <TResultValue = `${number}px`>(
   return result as TBreakpoints<TResultValue>;
 };
 
-console.log(gradationOfValues(0, 9, 'rem', (v, u) => `${v + v}${u}${u}`));
-
 export default gradationOfValues;
