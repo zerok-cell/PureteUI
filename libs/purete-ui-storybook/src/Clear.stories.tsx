@@ -21,8 +21,8 @@ export const Primary: Story = () => {
 
   return (
     <>
-      <button>BTN</button>
-      <button>EEEEEE</button>
+      <button onClick={()=>x.read()}>BTN</button>
+
     </>
   );
 };
