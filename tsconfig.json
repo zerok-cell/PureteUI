@@ -20,6 +20,9 @@
     },
     {
       "path": "./libs/providers"
+    },
+    {
+      "path": "./libs/if"
     }
   ],
   "ts-node": {
