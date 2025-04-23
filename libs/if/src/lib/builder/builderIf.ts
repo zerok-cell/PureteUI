@@ -1,50 +1,52 @@
 import { Builder, TArgs, TContext, TCtx, TPluginBody } from '../types/builderIf.types.js';
+import { core } from '../ifCore.js';
 
 /**
  * ## General documentation
- * Initializer of the "IF" context
- * The modularity of `builderIf` allows you to flexibly load checks into the
- * context, and you can also interact with the context's service context
- * variables.
+ * Initializes the "IF" context.
+ *
+ * The modularity of `builderIf` allows you to flexibly load checks (plugins) into
+ * the context and interact with internal service context variables.
+ *
  * @function
- * @param ctx The context with which the current builder is initialized.
- * Context values are functions. The keys are strings and the values are
- * functions of type `TPluginBody'. This parameter is intended for internal
- * use and accepts only functions without parameters, it will be fixed in
- * future versions.
- * @returns
- * - plugins A function to expand the "IF" context
- * Accepts "name" as input: the name of the function and the next parameter of the function itself.
- * - s A function that provides a context for the plugin.
- * - Your other added plugins
- * @throws Error
- * - Error of a non-existent plugin in the `s` function
- * - Error in the `plugin` function when you pass in place of the `fn`
- * parameter not a function as expected, but something else
+ *
+ * @param ctx - The context with which the current builder is initialized.
+ * It must be an object where the keys are string names of plugins, and the values are functions of type `TPluginBody`.
+ * This parameter is used internally. For now, it only supports functions without parameters (to be improved in future versions).
+ *
+ * @returns An extended context builder with the following:
+ * - `plugin` — A method to expand the context by registering a new plugin. Takes the plugin name and the plugin function.
+ * - `s` — A service function to call a plugin with arguments.
+ * - Any other previously added plugins.
+ *
+ * @throws Error If the requested plugin does not exist in the `s` function.
+ * @throws Error If the `plugin` function receives a value that is not a function.
  *
  * ## Guides
- * 1) In order to type the context in the plugin for the `s` function, you
- * need to use the `TContext` type.
- * ```ts
- * const builder = builderIf().plugin("fnFirst",function(this:TContext){
+ * 1) To type `this` in the plugin function used by `s`, use the `TContext` type.
  *
- * })
- * ```
- * 2) Use the type `TPluginBody` to type the plugin. It accepts a `Generic`
- * array of types for your `args`
  * ```ts
- * const youPlug:TPluginBody<[string,number]> = (arg1,arg2)=>{ // arg1:string, arg2:number
- *   return false
- * }
- * const x = builderIf().plugin('youPlug',youPlug)
+ * const builder = builderIf().plugin("fnFirst", function(this: TContext) {
+ *   // you can use `this.tmp` inside
+ * });
  * ```
- * This type automatically types the plugin to return `boolean`
+ *
+ * 2) Use the `TPluginBody` type to define the plugin. It accepts a tuple of argument types as a generic.
+ *
+ * ```ts
+ * const myPlugin: TPluginBody<[string, number]> = (str, num) => {
+ *   return str.length === num;
+ * };
+ * const x = builderIf().plugin('myPlugin', myPlugin);
+ * ```
+ *
+ * This utility type automatically infers the return type as `boolean` and types the plugin parameters accordingly.
  *
  * ## Example
  * ```ts
  * builderIf().plugin(
  *   'compareValues',
- *   function (this: TContext, a: string, b: string) {
+ *   function(this: TContext, a: string, b: string) {
  *     return a === b;
  *   }
  * );
@@ -81,14 +83,10 @@ export const builderIf = <
     pluginFn.call(context, ...args);
   };
   return {
+    ...core,
     s,
     plugin,
     ...ctx,
   } as Builder<T>;
 };
-builderIf().plugin(
-  'compareValues',
-  function (this: TContext, a: string, b: string) {
-    return a === b;
-  }
-);
+const x = builderIf();
