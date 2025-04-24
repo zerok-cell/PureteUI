@@ -1,4 +1,4 @@
-import { Builder, TArgs, TContext, TCtx, TPluginBody } from '../types/builderIf.types.js';
+import { TArgs, TBuilder, TContext, TDoubleRecord, TPlugin } from '../types/builderIf.types.js';
 import { core } from '../ifCore.js';
 
 /**
@@ -39,8 +39,9 @@ import { core } from '../ifCore.js';
  * };
  * const x = builderIf().plugin('myPlugin', myPlugin);
  * ```
- *
  * This utility type automatically infers the return type as `boolean` and types the plugin parameters accordingly.
+ *
+ * 3) Use the `bIf` wrapper instead of using builderIf
  *
  * ## Example
  * ```ts
@@ -51,42 +52,68 @@ import { core } from '../ifCore.js';
  *   }
  * );
  * ```
+ * @typeParam T Current loads plugins
+ * @see bIf
  */
-export const builderIf = <
-  T extends Record<string, TPluginBody> = Record<string, TPluginBody>
->(
+
+export const builderIf = <T extends Record<string, TPlugin>>(
   ctx: T = {} as T
-): Builder<T> => {
-  const plugin = <K extends string, Args extends TArgs>(
-    name: K,
-    fn: TPluginBody<Args>
-  ): Builder<TCtx<T, K, Args>> => {
-    if (typeof fn !== 'function')
-      throw Error('The passed function is not a function');
-    const nextCtx: TCtx<T, K, Args> = {
+) => {
+  type TGeneralContext = Record<keyof T, TContext>;
+  const generalContext = {} as TGeneralContext;
+  const plugin = <N extends string, A extends TArgs>(
+    name: N,
+    fn: TPlugin<A>
+  ): TBuilder<TDoubleRecord<T, N, TPlugin<A>>> => {
+    if (typeof fn !== 'function') throw Error('Not a function');
+    const nextCtx = {
       ...ctx,
       [name]: fn,
     };
     return builderIf(nextCtx);
   };
-  const s = <K extends keyof T>(name: K, args: Parameters<T[K]>) => {
-    const pluginFn = ctx[name];
-    const context: TContext = {
-      tmp: ['dwd'],
-    };
-    if (!pluginFn) {
+  const clearContext = <K extends keyof T>(name: K): void => {
+    if (!ctx[name])
       throw new Error(
-        `The plugin named "${String(name)}" does not exist, check the context`
+        'The function does not exist, so the contest was not created earlier.'
       );
+    if (generalContext[name]) {
+      generalContext[name].tmp = [];
     }
+  };
+  const createContext = <K extends keyof T>(name: K): TGeneralContext[K] => {
+    if (!ctx[name]) throw new Error('No such function.');
+    if (generalContext[name]) return generalContext[name];
+    generalContext[name] = {
+      tmp: [],
+      memory: {},
+      lastArgs: [],
+    } as TContext;
+    return generalContext[name];
+  };
 
-    pluginFn.call(context, ...args);
+  const s = <K extends keyof T>(name: K, args: Parameters<T[K]>) => {
+    const fn = ctx[name];
+    if (!fn) throw new Error(`Plugin "${String(name)}" not found`);
+    const context = createContext(name);
+    context.lastArgs = [...args];
+    fn.call(context, ...args);
+    clearContext(name);
   };
   return {
     ...core,
     s,
     plugin,
     ...ctx,
-  } as Builder<T>;
+  };
 };
-const x = builderIf();
+
+/**
+ * ## Description
+ * It is just a wrapper over the `builderIf'.It is needed to automatically
+ * transfer an empty context for the types to work correctly.
+ * @see builderIf
+ *
+ * @remarks Does not add new functionality
+ */
+export const bIf = () => builderIf({});

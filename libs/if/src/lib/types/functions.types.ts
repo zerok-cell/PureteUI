@@ -1,3 +1,3 @@
-import { TPluginBody } from './builderIf.types.js';
+import { TPlugin } from './builderIf.types.js';
 
-export type FTOnceParam = TPluginBody<[unknown]>;
+export type FTOnceParam = TPlugin<[unknown]>;

@@ -22,7 +22,6 @@ import { FTOnceParam } from './types/functions.types.js';
  * @returns `true` if the variable is truthy, otherwise `false`.
  */
 export const ifExists: FTOnceParam = (variable) => !!variable;
-
 /**
  * Default plugin core containing pre-defined conditional utility functions.
  *
