@@ -18,11 +18,9 @@ type Story = StoryObj<typeof component>;
 
 export const Primary: Story = () => {
   const x = useClipboard();
-
-  return (
-    <>
-      <button>BTN</button>
-      <button>EEEEEE</button>
-    </>
-  );
+  const cl = async () => {
+    const xd = await x.write('d');
+    console.log(xd);
+  };
+  return <button onClick={cl}>BTN</button>;
 };

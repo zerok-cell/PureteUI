@@ -230,12 +230,6 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(rollup@4.39.0)(typescript@5.8.2)(vite@6.2.5(@types/node@20.17.30)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))
 
-  libs/if:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.15
-
   libs/providers: {}
 
   libs/purete-theme-base: {}
@@ -7218,8 +7212,8 @@ packages:
     peerDependencies:
       typedoc: ~0.28.0
 
-  typedoc-plugin-markdown@4.6.3:
-    resolution: {integrity: sha512-86oODyM2zajXwLs4Wok2mwVEfCwCnp756QyhLGX2IfsdRYr1DXLCgJgnLndaMUjJD7FBhnLk2okbNE9PdLxYRw==}
+  typedoc-plugin-markdown@4.6.2:
+    resolution: {integrity: sha512-JVCIoK7FDN3t3PSLkwDyrBFyjtDznqDCJotP9evxhLyb6bEZTqhAGB0tPy1RmgHuY2WoAONMrsWs8LfLsD+A6A==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.28.x
@@ -16125,7 +16119,7 @@ snapshots:
     dependencies:
       typedoc: 0.28.3(typescript@5.7.3)
 
-  typedoc-plugin-markdown@4.6.3(typedoc@0.28.3(typescript@5.7.3)):
+  typedoc-plugin-markdown@4.6.2(typedoc@0.28.3(typescript@5.7.3)):
     dependencies:
       typedoc: 0.28.3(typescript@5.7.3)
 
