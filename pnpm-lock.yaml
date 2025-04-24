@@ -168,6 +168,9 @@ importers:
       typedoc-github-theme:
         specifier: ^0.3.0
         version: 0.3.0(typedoc@0.28.3(typescript@5.7.3))
+      typedoc-plugin-markdown:
+        specifier: ^4.6.3
+        version: 4.6.3(typedoc@0.28.3(typescript@5.7.3))
       typedoc-theme-hierarchy:
         specifier: ^6.0.0
         version: 6.0.0(typedoc@0.28.3(typescript@5.7.3))
@@ -7214,6 +7217,12 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typedoc: ~0.28.0
+
+  typedoc-plugin-markdown@4.6.3:
+    resolution: {integrity: sha512-86oODyM2zajXwLs4Wok2mwVEfCwCnp756QyhLGX2IfsdRYr1DXLCgJgnLndaMUjJD7FBhnLk2okbNE9PdLxYRw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      typedoc: 0.28.x
 
   typedoc-theme-hierarchy@6.0.0:
     resolution: {integrity: sha512-SSPqM0HnFyyYoNexmH8FHIkoKvd3Xg6KZsutrDCcYgm2mtVGGHLFKuqAaVKtKWbPq7xW61OIxvVrTQQi6dtXTw==}
@@ -16113,6 +16122,10 @@ snapshots:
       is-typedarray: 1.0.0
 
   typedoc-github-theme@0.3.0(typedoc@0.28.3(typescript@5.7.3)):
+    dependencies:
+      typedoc: 0.28.3(typescript@5.7.3)
+
+  typedoc-plugin-markdown@4.6.3(typedoc@0.28.3(typescript@5.7.3)):
     dependencies:
       typedoc: 0.28.3(typescript@5.7.3)
 

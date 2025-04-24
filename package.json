@@ -4,7 +4,9 @@
   "license": "MIT",
   "repository": "https://github.com/zerok-cell/ZeroUI.git",
   "scripts": {
-    "docs": "typedoc --plugin typedoc-github-theme\n"
+    "docs:md": "typedoc --plugin typedoc-plugin-markdown --plugin typedoc-github-theme --out docs-md",
+    "docs:html": "typedoc --plugin typedoc-github-theme --out docs",
+    "docs:all": "pnpm run docs:md && pnpm run docs:html"
   },
   "private": false,
   "devDependencies": {
@@ -59,6 +61,7 @@
     "tslib": "^2.3.0",
     "typedoc": "^0.28.3",
     "typedoc-github-theme": "^0.3.0",
+    "typedoc-plugin-markdown": "^4.6.3",
     "typedoc-theme-hierarchy": "^6.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.19.0",
@@ -84,6 +87,5 @@
         }
       }
     }
-  },
-  "dependencies": {}
+  }
 }
