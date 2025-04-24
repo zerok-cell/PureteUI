@@ -5,6 +5,8 @@ import {
   transitionSpeedVariant,
 } from '../../../css';
 
+const defaultHeightGradient = '50%';
+
 export const rainbowGradientVariable = createVar();
 const gradientAnimation = keyframes({
   '0%': { backgroundPosition: '0% 50%' },
@@ -20,7 +22,7 @@ export const gradientBlurVariable = createVar({
 export const gradientHeightVariable = createVar({
   syntax: '<number>',
   inherits: false,
-  initialValue: '30%',
+  initialValue: defaultHeightGradient,
 });
 export const borderSizeVariable = createVar({
   syntax: '<number>',
@@ -41,7 +43,7 @@ export const rainbowBorderStyle = recipe({
     hsl(178, 86%, 66%)
 )`,
       [gradientBlurVariable]: '2px',
-      [gradientHeightVariable]: '50%',
+      [gradientHeightVariable]: defaultHeightGradient,
       [borderSizeVariable]: '2px',
     },
 

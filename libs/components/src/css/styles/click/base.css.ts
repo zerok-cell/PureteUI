@@ -1,5 +1,5 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
-import { pureteTheme } from '../theme.css';
+import { pureteTheme } from '../../theme.css';
 
 const baseClick = recipe({
   base: {

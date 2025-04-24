@@ -43,11 +43,7 @@ const meta: TypeWithDeepControls<Meta<typeof component>> = {
       description: 'Style from button',
       table: { category: standardProperties },
     },
-    fill: {
-      control: 'boolean',
-      description: 'Whether to fill the parent space or not',
-      table: { category: customProperties },
-    },
+
     width: {
       control: 'text',
       description: 'Width from skeleton',

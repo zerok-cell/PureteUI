@@ -1,8 +1,9 @@
+export * from './components/Selector/Selector';
 export * from './components/Effects/RainbowBorder/RainbowBorder';
 export * from './components/RainbowButton/RainbowButton';
 export * from './components/Skeleton/SkeletonBlock/SkeletonBlock';
 export * from './css';
-
+export * from './hooks';
 export * from './components/GlassTail/GlassTail';
 export * from './components/SlideText/SlideText';
 export * from './components/Button/Button';

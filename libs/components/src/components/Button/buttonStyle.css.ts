@@ -9,7 +9,7 @@ import {
   transitionFunctionVariant,
   transitionSpeedVariant,
 } from '../../css';
-import baseClick from '../../css/click/base.css';
+import baseClick from '../../css/styles/click/base.css';
 
 const buttonStyle = recipe({
   base: [
