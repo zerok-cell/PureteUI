@@ -3,7 +3,7 @@ import { ButtonSelector } from './ButtonSelector';
 import { MenuSelector } from './MenuSelector';
 import { TSelectorProps } from '../../types/selector/selector.types';
 import { FC } from 'react';
-import { flexContainer } from '../../css/variants/flex.css';
+import { flexContainer } from '../../css';
 
 /**
  * @description Custom React selector with very many customize via props

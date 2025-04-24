@@ -1,11 +1,20 @@
-# if
+<div align="center">
 
-This library was generated with [Nx](https://nx.dev).
+![If-logo](./LogoIf.svg)
+</div>
 
-## Building
+# IF
 
-Run `nx build if` to build the library.
+The library creates a level of abstraction from the mundane `typeof`
+verification to something more extensive, such as checking for admin using
+the redux store, API requests, and all this can be encapsulated in a single
+plugin.
 
-## Running unit tests
+You can configure a narrowly focused validator that will contain only what is
+necessary.
 
-Run `nx test if` to execute the unit tests via [Vitest](https://vitest.dev/).
+---
+You can read the documentation in text form and on the website.:
+
+1) [Text-documentation](/docs-md/@purete-ui/if/README.md)
+2) [Site-documentation]()
