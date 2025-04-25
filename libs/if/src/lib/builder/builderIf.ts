@@ -2,8 +2,8 @@
  * @module BuilderIF
  * The main library module
  */
-import { TArgs, TBuilder, TContext, TDoubleRecord, TPlugin } from '../types/builderIf.types.js';
-import { core } from '../ifCore.js';
+import { TArgs, TBuilder, TConfig, TContext, TDoubleRecord, TFixed, TPlugin } from '../types/builderIf.types.js';
+import { core, isType } from '../core/index.js';
 
 /**
  * ## General documentation
@@ -14,6 +14,7 @@ import { core } from '../ifCore.js';
  *
  * @function
  * @group BuilderIfCore
+ * @param config Configuration for builderIf look {@link TConfig}
  * @param ctx - The context with which the current builder is initialized.
  * It must be an object where the keys are string names of plugins, and the values are functions of type `TPluginBody`.
  * This parameter is used internally. For now, it only supports functions without parameters (to be improved in future versions).
@@ -60,17 +61,35 @@ import { core } from '../ifCore.js';
  *   }
  * );
  * ```
+ *
+ * ---
+ * ## Config
+ * The configuration applies to the entire facility and is permanent.
+ * You can find the configuration type in {@link TConfig}
+ * The configuration is optional and has default values. Please read this
+ * documentation before changing anything in it.
+ * Description of the configuration keys:
+ * - `autoAddContext` - If `true` is set, then EACH added plugin can interact
+ * with the context, this parameter eliminates the need to use `s' if you need
+ * context. Activate it if you don't want to bother with the `s` and brevity
+ * and conciseness are important to you.
+ *
  * @typeParam T Current downloaded plugins via the `plugin` function
  * @see bIf
  * @see TContext
+ * @see TConfig
  * @see TPlugin
  */
 
 export const builderIf = <T extends Record<string, TPlugin>>(
+  config: TConfig = {
+    autoAddContext: false,
+  },
   ctx: T = {} as T
 ) => {
   type TGeneralContext = Record<keyof T, TContext>;
   const generalContext = {} as TGeneralContext;
+
   /**
    * ## Documentation
    * @param name The name of the function that you will use to call your plugin in the future
@@ -96,7 +115,14 @@ export const builderIf = <T extends Record<string, TPlugin>>(
     name: N,
     fn: TPlugin<A>
   ): TBuilder<TDoubleRecord<T, N, TPlugin<A>>> => {
-    if (typeof fn !== 'function') throw Error('Not a function');
+    if (!isType(fn, 'function')) throw Error('Not a function');
+    const wrapper = (): TPlugin<A> => {
+      if (config.autoAddContext) {
+        const context = createContext(name);
+        return (args: Parameters<TPlugin<A>>) => fn.apply(context, args);
+      }
+      return fn;
+    };
     const nextCtx = {
       ...ctx,
       [name]: fn,
@@ -127,7 +153,7 @@ export const builderIf = <T extends Record<string, TPlugin>>(
    * @returns TGeneralContext[K] - Returns a context object with keys corresponding to the type `TContext`
    */
   const createContext = <K extends keyof T>(name: K): TGeneralContext[K] => {
-    if (!ctx[name]) throw new Error('No such function.');
+    // if (!ctx[name]) throw new Error('No such function.');
     if (generalContext[name]) return generalContext[name];
     generalContext[name] = {
       tmp: [],
@@ -171,11 +197,18 @@ export const builderIf = <T extends Record<string, TPlugin>>(
     clearContext(name);
     return result;
   };
+
+  const fixed = (): TFixed<T> => {
+    return {
+      s,
+      ...ctx,
+      ...core,
+    } as TFixed<T>;
+  };
   return {
-    ...core,
     s,
     plugin,
-    ...ctx,
+    fixed,
   };
 };
 
@@ -188,4 +221,14 @@ export const builderIf = <T extends Record<string, TPlugin>>(
  * @remarks Does not add new functionality
  * @group BuilderIfCore
  */
-export const bIf = () => builderIf({});
+export const bIf = (config?: TConfig) => {
+  return builderIf<T>({});
+};
+const x = bIf({})
+  .plugin('dd', (d: string) => {
+    console.log(1);
+    return true;
+  })
+  .plugin('ddd', (d: string) => {
+    return true;
+  });

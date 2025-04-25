@@ -1,7 +1,7 @@
-import { TIfCore } from './types/ifCore.types.js';
-import { FTOnceParam } from './types/functions.types.js';
+import { TIfCoreKey } from '../types/core/index.js';
 
 /**
+ * @function
  * @public
  * Checks whether a value exists (i.e., is not `null` or `undefined` or any falsy value).
  *
@@ -19,21 +19,10 @@ import { FTOnceParam } from './types/functions.types.js';
  * ```
  *
  * @param variable - The variable to check for existence.
+ * @param [i] - `i` or `invert' is responsible for switching the negation of `!`
+ * or `!!'. By default, the double negation `!!` is used.
  * @returns `true` if the variable is truthy, otherwise `false`.
+ * @group BuilderIfCore
  */
-export const ifExists: FTOnceParam = (variable) => !!variable;
-/**
- * Default plugin core containing pre-defined conditional utility functions.
- *
- * @remarks
- * Preset functions do not use the `s` context.
- * @private
- * @example
- * ```ts
- * const builder = builderIf();
- * builder.s("ifExists", ["someValue"]); // executes core.ifExists
- * ```
- */
-export const core: TIfCore = {
-  ifExists,
-};
+export const ifExists: TIfCoreKey<'ifExists'> = (variable, i = false) =>
+  i ? !!variable : !variable;

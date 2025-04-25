@@ -1,4 +1,4 @@
-import { core } from '../ifCore.js';
+import { TIfCore } from './core/index.js';
 
 /**
  * @internal
@@ -19,7 +19,7 @@ export type TArgs<T = unknown> = T[];
  * A plugin is a regular function that:
  * - Takes one or more arguments (`Args`)
  * - Returns a `boolean` result
- * - Is executed with a contextual `this` (of type `TContext`) when called using `s()`
+ * - Is executed with a contextual `this` (of type {@link TContext}) when called using `s()`
  *
  * ---
  * ## How to use
@@ -55,7 +55,10 @@ export type TArgs<T = unknown> = T[];
  * @group BuilderIfCore
  */
 export type TPlugin<Args extends TArgs = []> = (...args: Args) => boolean;
-
+export type TRPlugin = ReturnType<TPlugin>;
+export type TConfig = {
+  autoAddContext?: boolean;
+};
 /**
  *
  *
@@ -75,6 +78,9 @@ export type TContext = {
 };
 
 /**
+ *
+ *
+ * ![Plugin example](/home/zerok/WebstormProjects/PureteUI/libs/if/LogoIf.svg)
  *
  *
  * Represents the full shape of the builder context returned from `builderIf()`.
@@ -143,9 +149,15 @@ export type TBuilder<T extends Record<string, TPlugin>> = {
     fn: TPlugin<A>
   ) => TBuilder<TDoubleRecord<T, N, TPlugin<A>>>;
   s: <K extends keyof T>(name: K, args: Parameters<T[K]>) => void;
-} & T &
-  typeof core;
+  fixed: () => TFixed<T>;
+};
 
+export type TFixed<T extends Record<string, TPlugin>> = Omit<
+  TBuilder<T>,
+  'plugin' | 'fixed'
+> &
+  TIfCore &
+  T;
 /**
  * A utilitarian type that extends `T` `Record` from `N` and `A`
  * @typeParam A The object that needs to be expanded

@@ -19,4 +19,18 @@ export default defineConfig(() => ({
       provider: 'v8' as const,
     },
   },
+  build: {
+    outDir: './dist',
+    emptyOutDir: true,
+    reportCompressedSize: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+    lib: {
+      entry: 'src/index.ts',
+      name: '@zero-ui/if',
+      fileName: 'index',
+      formats: ['es' as const, 'cjs' as const, 'umd' as const],
+    },
+  },
 }));
