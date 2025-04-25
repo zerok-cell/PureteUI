@@ -116,18 +116,18 @@ export const builderIf = <T extends Record<string, TPlugin>>(
     fn: TPlugin<A>
   ): TBuilder<TDoubleRecord<T, N, TPlugin<A>>> => {
     if (!isType(fn, 'function')) throw Error('Not a function');
-    const wrapper = (): TPlugin<A> => {
-      if (config.autoAddContext) {
-        const context = createContext(name);
-        return (args: Parameters<TPlugin<A>>) => fn.apply(context, args);
-      }
-      return fn;
-    };
+    // const wrapper = (): TPlugin<A> => {
+    //   if (config.autoAddContext) {
+    //     const context = createContext(name);
+    //     return (args: Parameters<TPlugin<A>>) => fn.apply(context, args);
+    //   }
+    //   return fn;
+    // };
     const nextCtx = {
       ...ctx,
       [name]: fn,
     };
-    return builderIf(nextCtx);
+    return builderIf(config, nextCtx);
   };
   /**
    * @internal
@@ -222,7 +222,7 @@ export const builderIf = <T extends Record<string, TPlugin>>(
  * @group BuilderIfCore
  */
 export const bIf = (config?: TConfig) => {
-  return builderIf<T>({});
+  return builderIf({});
 };
 const x = bIf({})
   .plugin('dd', (d: string) => {
@@ -231,4 +231,7 @@ const x = bIf({})
   })
   .plugin('ddd', (d: string) => {
     return true;
-  });
+  })
+  .fixed();
+
+x.dd();
