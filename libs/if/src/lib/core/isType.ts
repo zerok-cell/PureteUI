@@ -1,4 +1,6 @@
 import { TIfCoreKey } from '../types/core/index.js';
+import { TContext } from '../types/builderIf.types.js';
+import { contextManager } from '../builder/context/contextManager.js';
 
 /**
  * @function
@@ -8,5 +10,11 @@ import { TIfCoreKey } from '../types/core/index.js';
  * @see TTypeofType
  * @group BuilderIfCore
  */
-export const isType: TIfCoreKey<'isType'> = (variable, type) =>
-  typeof variable === type;
+export const isType: TIfCoreKey<'isType'> = function (this: TContext, ...args) {
+  const [variable, type] = args;
+  const manage = contextManager(this);
+  manage.cache(...args);
+  console.log(manage.ctx);
+
+  return typeof variable === type;
+};

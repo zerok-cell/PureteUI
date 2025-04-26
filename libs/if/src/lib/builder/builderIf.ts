@@ -3,7 +3,7 @@
  * The main library module
  */
 import { TArgs, TBuilder, TConfig, TContext, TDoubleRecord, TFixed, TPlugin } from '../types/builderIf.types.js';
-import { core, isType } from '../core/index.js';
+import { core } from '../core/index.js';
 
 /**
  * ## General documentation
@@ -89,7 +89,15 @@ export const builderIf = <T extends Record<string, TPlugin>>(
 ) => {
   type TGeneralContext = Record<keyof T, TContext>;
   const generalContext = {} as TGeneralContext;
+  const { autoAddContext } = config;
 
+  const wrapContext = <N extends string, A extends TArgs>(
+    name: N,
+    fn: TPlugin<A>
+  ): TPlugin<A> => {
+    const context = createContext(name);
+    return (...args) => fn.apply(context, args);
+  };
   /**
    * ## Documentation
    * @param name The name of the function that you will use to call your plugin in the future
@@ -115,17 +123,18 @@ export const builderIf = <T extends Record<string, TPlugin>>(
     name: N,
     fn: TPlugin<A>
   ): TBuilder<TDoubleRecord<T, N, TPlugin<A>>> => {
-    if (!isType(fn, 'function')) throw Error('Not a function');
-    // const wrapper = (): TPlugin<A> => {
-    //   if (config.autoAddContext) {
-    //     const context = createContext(name);
-    //     return (args: Parameters<TPlugin<A>>) => fn.apply(context, args);
-    //   }
-    //   return fn;
-    // };
+    if (typeof fn !== 'function') throw Error('Not a function');
+    const encapsulation = (): TPlugin<A> => {
+      if (autoAddContext) {
+        return wrapContext(name, fn);
+        // const context = createContext(name);
+        // return (...args) => fn.apply(context, args);
+      }
+      return fn;
+    };
     const nextCtx = {
       ...ctx,
-      [name]: fn,
+      [name]: encapsulation(),
     };
     return builderIf(config, nextCtx);
   };
@@ -153,7 +162,6 @@ export const builderIf = <T extends Record<string, TPlugin>>(
    * @returns TGeneralContext[K] - Returns a context object with keys corresponding to the type `TContext`
    */
   const createContext = <K extends keyof T>(name: K): TGeneralContext[K] => {
-    // if (!ctx[name]) throw new Error('No such function.');
     if (generalContext[name]) return generalContext[name];
     generalContext[name] = {
       tmp: [],
@@ -197,14 +205,26 @@ export const builderIf = <T extends Record<string, TPlugin>>(
     clearContext(name);
     return result;
   };
-
+  const addCtxToObject = <T extends object>(
+    obj: T
+  ): { [K in keyof T]: ReturnType<typeof wrapContext> } => {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => {
+        if (typeof value === 'function') {
+          return [key, wrapContext(key, value)];
+        }
+        return [key, value];
+      })
+    ) as { [K in keyof T]: ReturnType<typeof wrapContext> };
+  };
   const fixed = (): TFixed<T> => {
-    return {
+    return Object.freeze({
       s,
       ...ctx,
-      ...core,
-    } as TFixed<T>;
+      ...addCtxToObject(core),
+    } as TFixed<T>);
   };
+
   return {
     s,
     plugin,
@@ -222,16 +242,11 @@ export const builderIf = <T extends Record<string, TPlugin>>(
  * @group BuilderIfCore
  */
 export const bIf = (config?: TConfig) => {
-  return builderIf({});
+  return builderIf({ ...config }, {});
 };
-const x = bIf({})
-  .plugin('dd', (d: string) => {
-    console.log(1);
-    return true;
-  })
-  .plugin('ddd', (d: string) => {
+const x = bIf({ autoAddContext: true })
+  .plugin('ddd', function (this: TContext, d: string) {
     return true;
   })
   .fixed();
-
-x.dd();
+x.isType(1, 'number');

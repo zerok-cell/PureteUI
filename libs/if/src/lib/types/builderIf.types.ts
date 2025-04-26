@@ -73,7 +73,10 @@ export type TConfig = {
  */
 export type TContext = {
   tmp: Array<unknown>;
-  memory: Record<string, unknown>;
+  memory: {
+    cache?: Record<string, string>;
+    tmp?: TContext['tmp'];
+  } & Record<string, unknown>;
   lastArgs: TArgs;
 };
 
@@ -157,7 +160,8 @@ export type TFixed<T extends Record<string, TPlugin>> = Omit<
   'plugin' | 'fixed'
 > &
   TIfCore &
-  T;
+  T &
+  Partial<Pick<TBuilder<T>, 's'>>;
 /**
  * A utilitarian type that extends `T` `Record` from `N` and `A`
  * @typeParam A The object that needs to be expanded
