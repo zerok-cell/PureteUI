@@ -59,6 +59,7 @@ export type TRPlugin = ReturnType<TPlugin>;
 export type TConfig = {
   autoAddContext?: boolean;
 };
+export type TPluginObject = Record<string, TPlugin>;
 /**
  *
  *
@@ -74,12 +75,11 @@ export type TConfig = {
 export type TContext = {
   tmp: Array<unknown>;
   memory: {
-    cache?: Record<string, string>;
-    tmp?: TContext['tmp'];
+    tmp: TContext['tmp'];
   } & Record<string, unknown>;
   lastArgs: TArgs;
 };
-
+export type TContextObject<T extends string = string> = Record<T, TContext>;
 /**
  *
  *
@@ -146,13 +146,13 @@ export type TContext = {
  * const result = builder.s("greaterThan", [10, 5]); // true
  * @group BuilderIfCore
  */
-export type TBuilder<T extends Record<string, TPlugin>> = {
+export type TBuilder<T extends TPluginObject> = {
   plugin: <N extends string, A extends TArgs>(
     name: N,
     fn: TPlugin<A>
   ) => TBuilder<TDoubleRecord<T, N, TPlugin<A>>>;
-  s: <K extends keyof T>(name: K, args: Parameters<T[K]>) => void;
-  fixed: () => TFixed<T>;
+  // s: <K extends keyof T>(name: K, args: Parameters<T[K]>) => void;
+  // fixed: () => TFixed<T>;
 };
 
 export type TFixed<T extends Record<string, TPlugin>> = Omit<
@@ -172,3 +172,8 @@ export type TFixed<T extends Record<string, TPlugin>> = Omit<
  */
 export type TDoubleRecord<A extends object, B extends string, C> = A &
   Record<B, C>;
+
+export type TConfigPlugin<N> = {
+  context?: boolean;
+  name: N;
+};

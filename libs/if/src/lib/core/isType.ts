@@ -13,8 +13,7 @@ import { contextManager } from '../builder/context/contextManager.js';
 export const isType: TIfCoreKey<'isType'> = function (this: TContext, ...args) {
   const [variable, type] = args;
   const manage = contextManager(this);
-  manage.cache(...args);
-  console.log(manage.ctx);
-
-  return typeof variable === type;
+  return manage.cache(args, () => {
+    return typeof variable === type;
+  });
 };

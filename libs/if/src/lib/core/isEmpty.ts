@@ -1,5 +1,6 @@
 import { ifExists } from './ifExists.js';
 import { TIfCoreKey } from '../types/core/index.js';
+import { TContext } from '../types/builderIf.types.js';
 import { isEqual } from './isEqual.js';
 
 /**
@@ -33,9 +34,10 @@ import { isEqual } from './isEqual.js';
  * @returns `true` if the variable is considered empty, otherwise `false`.
  * @group BuilderIfCore
  */
-export const ifEmpty: TIfCoreKey<'ifEmpty'> = <T = unknown>(
+export const ifEmpty: TIfCoreKey<'ifEmpty'> = function <T = unknown>(
+  this: TContext,
   variable: T
-): boolean => {
+): boolean {
   switch (typeof variable) {
     case 'number':
       return ifExists(variable);
