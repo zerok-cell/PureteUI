@@ -1,9 +1,6 @@
 import { TArgs, TPlugin } from '../lib/types/builderIf.types.js';
 
-export const performanceTest = <F extends TPlugin, A extends TArgs>(
-  fn: TPlugin<A>,
-  args: A
-) => {
+export const performanceTest = <A extends TArgs>(fn: TPlugin<A>, args: A) => {
   const start = performance.now();
   fn(...args);
   const end = performance.now();
