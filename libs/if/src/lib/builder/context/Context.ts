@@ -1,4 +1,5 @@
-import { TArgs, TContext, TContextObject, TPlugin } from '../../types/builderIf.types.js';
+import { TArgs, TPlugin } from '../../types/builderIf.types.js';
+import { TContextObject } from '../../types/context/index.js';
 
 /**
  * @module ContextManager
@@ -8,8 +9,8 @@ import { TArgs, TContext, TContextObject, TPlugin } from '../../types/builderIf.
  *
  * @category BuilderIfCore
  */
-export class Context {
-  private context: TContextObject = {};
+export class Context<T extends string> {
+  private context: TContextObject<T> = {} as TContextObject<T>;
 
   /**
    * Initializes `Context`, protecting the `context` object from modification.
@@ -21,6 +22,21 @@ export class Context {
     });
   }
 
+  /**
+   * @function
+   * @description this function is used to clear the `tmp` key in your context.
+   * This function is used in the effect after calling the plugin, the next
+   * call to this plugin will get a clean `tmp`
+   * @param name
+   * @typeParam N The name of the context that you specified in the `createContext`
+   */
+  clearTmp = <N extends keyof typeof this.context>(name: N) => {
+    if (name in this.context) {
+      this.context[name].tmp = [];
+      return true;
+    }
+    return false;
+  };
   /**
    * @function
    * @name closeGate
@@ -46,7 +62,11 @@ export class Context {
    * ctx.createContext('pluginA');
    * ```
    */
-  public createContext = <K extends string>(name: K): void => {
+  public createContext = <
+    K extends Exclude<keyof typeof this.context, typeof this.context>
+  >(
+    name: K
+  ): void => {
     this.context[name] = {
       tmp: [],
       memory: { tmp: [] },
@@ -67,9 +87,9 @@ export class Context {
    * console.log(ctx.getContext('pluginA')); // Outputs the context object
    * ```
    */
-  public getContext = <K extends string>(
+  public getContext = <K extends keyof typeof this.context>(
     name: K
-  ): TContextObject[K] | Error => {
+  ): (typeof this.context)[K] | Error => {
     if (name in this.context) {
       return this.context[name];
     }
@@ -98,45 +118,27 @@ export class Context {
    * wrappedFn();
    * ```
    */
-  public functionContext: FTFunctionContext = (fn, name) => {
+  public functionContext = <
+    A extends TArgs,
+    N extends Exclude<keyof typeof this.context, typeof this.context>
+  >(
+    fn: TPlugin<A>,
+    name: N
+  ) => {
+    type TReturn = ReturnType<typeof fn>;
     if (!(name in this.context))
       throw new Error(`Context with name ${name} does not exist`);
-
-    return (...args) => {
+    this.createContext(name);
+    return (...args: Parameters<typeof fn>): TReturn => {
       const result = fn.apply(this.context[name], args);
-      this.context[name].tmp = []; // Clears temporary data after execution
+      this.context[name].tmp = [];
       return result;
     };
   };
 }
 
-/**
- * @description
- * A type used to create a function within an execution context.
- *
- * @typeParam A - Function arguments.
- *
- * @example
- * ```ts
- * const ctx = new Context();
- * ctx.createContext('pluginA');
- *
- * const wrappedFn = ctx.functionContext(function (msg: string) {
- *   console.log(this.memory);
- *   return msg.toUpperCase();
- * }, 'pluginA');
- *
- * console.log(wrappedFn("hello")); // "HELLO"
- * ```
- */
-type FTFunctionContext = <A extends TArgs>(
-  fn: (
-    this: TContext,
-    ...args: Parameters<TPlugin<A>>
-  ) => ReturnType<TPlugin<A>>,
-  name: string
-) => (...args: A) => ReturnType<typeof fn>;
 export type TContextClass = InstanceType<typeof Context>;
+
 /**
  * @method
  * @function
