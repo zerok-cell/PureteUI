@@ -8,7 +8,7 @@
 
 > **TContext** = `object`
 
-Defined in: [types/builderIf.types.ts:71](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L71)
+Defined in: [types/context/context.ts:3](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/context/context.ts#L3)
 
 ## Properties
 
@@ -16,30 +16,26 @@ Defined in: [types/builderIf.types.ts:71](https://github.com/zerok-cell/PureteUI
 
 > **tmp**: `unknown`[]
 
-Defined in: [types/builderIf.types.ts:72](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L72)
-
-Allows you to store arbitrary data in a tmp array.
-It is automatically cleared when the plugin is shut down.
+Defined in: [types/context/context.ts:4](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/context/context.ts#L4)
 
 ***
 
 ### memory
 
-> **memory**: `Record`\<`string`, `unknown`\>
+> **memory**: `object` & `Record`\<`string`, `unknown`\>
 
-Defined in: [types/builderIf.types.ts:73](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L73)
+Defined in: [types/context/context.ts:5](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/context/context.ts#L5)
 
-An object in which you can store permanent data for
-your plugin, it can be from comparison configs, data, to a cache of
-time-consuming operations.
+#### Type declaration
+
+##### tmp
+
+> **tmp**: `TContext`\[`"tmp"`\]
 
 ***
 
 ### lastArgs
 
-> **lastArgs**: `TArgs`
+> **lastArgs**: [`TArgs`](TArgs.md)
 
-Defined in: [types/builderIf.types.ts:74](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L74)
-
-Stores the latest plugin parameters, can be used in
-conjunction with memory to implement the 'lru cache`
+Defined in: [types/context/context.ts:8](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/context/context.ts#L8)

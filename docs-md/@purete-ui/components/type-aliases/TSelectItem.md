@@ -6,7 +6,7 @@
 
 # Type Alias: TSelectItem
 
-> **TSelectItem** = \{ `id`: `string`; `value`: \{ `text`: `string`; \}; \} \| \{ `id`: `null`; `value`: `never`; \}
+> **TSelectItem** = \{ `id`: `string`; `value`: \{ `text`: `string`; \}; \} \| \{ `id`: `null`; `value?`: `never`; \}
 
 Defined in: [types/providers/selector.types.ts:13](https://github.com/zerok-cell/PureteUI/blob/main/libs/components/src/types/providers/selector.types.ts#L13)
 
@@ -35,7 +35,7 @@ Displayed value of the item
 
 Text content to be shown in UI
 
-\{ `id`: `null`; `value`: `never`; \}
+\{ `id`: `null`; `value?`: `never`; \}
 
 ### id
 

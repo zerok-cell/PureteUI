@@ -8,7 +8,7 @@
 
 > **TDoubleRecord**\<`A`, `B`, `C`\> = `A` & `Record`\<`B`, `C`\>
 
-Defined in: [types/builderIf.types.ts:157](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L157)
+Defined in: [types/builderIf.types.ts:18](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L18)
 
 A utilitarian type that extends `T` `Record` from `N` and `A`
 

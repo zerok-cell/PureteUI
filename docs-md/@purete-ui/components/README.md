@@ -52,10 +52,6 @@ Run `nx test @zero-ui/components` to execute the unit tests via
 - [transitionSpeedVariant](variables/transitionSpeedVariant.md)
 - [transitionFunctionVariant](variables/transitionFunctionVariant.md)
 
-## Functions
-
-- [useClipboard](functions/useClipboard.md)
-
 ## Component
 
 - [Button](variables/Button.md)
@@ -69,5 +65,6 @@ Run `nx test @zero-ui/components` to execute the unit tests via
 ## Hooks
 
 - [useAdvancedToggle](functions/useAdvancedToggle.md)
+- [useClipboard](functions/useClipboard.md)
 - [useToggle](functions/useToggle.md)
 - [useMergeFunction](functions/useMergeFunction.md)

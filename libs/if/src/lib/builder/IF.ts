@@ -209,3 +209,7 @@ export class IF<T extends TPluginObject> {
  * builder.plugin('parametr');  // Calling the plugin registered with the name 'd'
  * ```
  */
+
+const x = new IF().plugin({
+
+})
