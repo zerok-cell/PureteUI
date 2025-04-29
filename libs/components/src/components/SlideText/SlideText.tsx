@@ -3,11 +3,22 @@ import { TSlideText } from '../../types';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { pureteTheme } from '../../css';
 
+/**
+ *
+ * @param transitionSpeedVariant
+ * @param transitionFunctionVariant
+ * @param children
+ * @param style
+ * @param endColorCustom Second color
+ * @param startColorCustom Main color
+ * @param props
+ * @constructor
+ * @group Component
+ */
 export const SlideText: TSlideText = ({
   transitionSpeedVariant,
   transitionFunctionVariant,
   children,
-  reverse,
   style,
   endColorCustom,
   startColorCustom,
@@ -25,7 +36,6 @@ export const SlideText: TSlideText = ({
       className={slideTextStyle({
         transitionFunctionVariant,
         transitionSpeedVariant,
-        reverse,
       })}
       {...props}
     >

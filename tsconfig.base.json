@@ -6,6 +6,7 @@
     "importHelpers": true,
     "isolatedModules": true,
     "lib": [
+      "dom",
       "es2022"
     ],
     "module": "esnext",

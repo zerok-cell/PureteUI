@@ -1,12 +1,9 @@
 import { TGlassTailStyleCss } from '../../components/GlassTail/glassTailStyle.css';
-import { ComponentProps, CSSProperties, FC, ReactNode } from 'react';
+import { ComponentProps, CSSProperties, FC } from 'react';
 
 export type TGlassTailProps = {
-  children: ReactNode;
   borderOpacity: string;
-  width?: CSSProperties['width'];
-  height?: CSSProperties['height'];
-  borderColor?: CSSProperties['borderColor'];
 } & TGlassTailStyleCss &
-  ComponentProps<'div'>;
+  ComponentProps<'div'> &
+  Partial<Pick<CSSProperties, 'width' | 'height' | 'borderColor'>>;
 export type TGlassTail = FC<TGlassTailProps>;
