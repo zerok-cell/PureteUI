@@ -131,7 +131,7 @@ export class Context<T extends string> {
     this.createContext(name);
     return (...args: Parameters<typeof fn>): TReturn => {
       const result = fn.apply(this.context[name], args);
-      this.context[name].tmp = [];
+      this.clearTmp(name);
       return result;
     };
   };

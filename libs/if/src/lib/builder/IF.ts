@@ -2,9 +2,8 @@
 
 import { TArgs, TConfig, TConfigPlugin, TDoubleRecord, TPlugin, TPluginObject } from '../types/builderIf.types.js';
 import { core, isType } from '../core/index.js';
-import { Context, contextManager, TContextClass } from './context/index.js';
+import { Context, TContextClass } from './context/index.js';
 import { TIfCore } from '../types/core/index.js';
-import { TContext } from '../types/context/index.js';
 
 /**
  * @private
@@ -20,6 +19,18 @@ const DEFAULT_CONFIG: Readonly<TConfig> = {
 const DEFAULT_CONFIG_PLUGIN: Readonly<TConfigPlugin<string>> = {
   context: false,
   name: 'Plugin',
+};
+
+const TEXT_ERROR: {
+  arrowOrNormalFn: string;
+  typeofError: string;
+  pluginExists: string;
+} = {
+  pluginExists:
+    'An attempt has been initiated to overwrite an existing plugin, change the name, or delete this plugin.',
+  typeofError: 'Not a function',
+  arrowOrNormalFn:
+    'You indicated that you would use the context, but you passed the arrow function, arrow functions do not support the context, rewrite to `function`',
 };
 
 /**
@@ -63,7 +74,7 @@ const DEFAULT_CONFIG_PLUGIN: Readonly<TConfigPlugin<string>> = {
  * @property {TConfig} #config - The configuration object for the builder, including settings such as `autoAddContext`.
  * @property {TContextClass} #context - The #context manager that handles interactions with plugins.
  */
-export class BuilderIf<T extends TPluginObject> {
+export class IF<T extends TPluginObject> {
   /**
    * Holds all the registered plugins in the builder.
    * The keys are plugin names, and the values are the plugin functions encapsulated with #context (if enabled).
@@ -118,15 +129,22 @@ export class BuilderIf<T extends TPluginObject> {
    *
    * @param {TConfigPlugin<N>} [config] - The plugin configuration object, including options like `name` and `#context`.
    * @param {TPlugin<A>} fn - The plugin function that gets registered. It will be invoked later through the builder.
-   * @returns {BuilderIf<TDoubleRecord<T, N, TPlugin<A>>>} - The updated `BuilderIf` instance with the new plugin added.
+   * @returns {IF<TDoubleRecord<T, N, TPlugin<A>>>} - The updated `BuilderIf` instance with the new plugin added.
    *
    * @throws {Error} - If the `fn` is not a function.
    */
   readonly plugin = <N extends string, A extends TArgs>(
     config: TConfigPlugin<N> = DEFAULT_CONFIG_PLUGIN as TConfigPlugin<N>,
     fn: TPlugin<A>
-  ): BuilderIf<TDoubleRecord<T, N, TPlugin<A>>> => {
-    if (!isType(fn, 'function')) throw Error('Not a function');
+  ): IF<TDoubleRecord<T, N, TPlugin<A>>> => {
+    if (config.name in this.#plugins) throw Error(TEXT_ERROR.pluginExists);
+
+    if (!isType(fn, 'function')) throw Error(TEXT_ERROR.typeofError);
+    if (
+      !Object.prototype.hasOwnProperty.call(fn, 'prototype') &&
+      config.context
+    )
+      throw Error(TEXT_ERROR.arrowOrNormalFn);
     this.#plugins[config.name] = this.#encapsulation<A, N>(config, fn);
     return this;
   };
@@ -137,12 +155,11 @@ export class BuilderIf<T extends TPluginObject> {
    *
    * @returns {Readonly<T>} - The frozen plugins object, which can no longer be modified.
    */
-  readonly fixed = (): Readonly<T & TIfCore> => {
-    return Object.freeze({
+  readonly fixed = (): Readonly<T & TIfCore> =>
+    Object.freeze({
       ...this.#plugins,
       ...core,
     }) as Readonly<T & TIfCore>;
-  };
 
   #effect = <A extends TArgs, N extends string>(
     fn: TPlugin<A>,
@@ -171,24 +188,9 @@ export class BuilderIf<T extends TPluginObject> {
    *
    * @returns {TConfig} - The configuration object for the builder.
    */
-  #gConf = (): TConfig => {
-    return this.#config;
-  };
+  #gConf = (): TConfig => this.#config;
 }
 
-const myBilder = new BuilderIf()
-  .plugin(
-    { name: 'ddd', context: true },
-    function (this: TContext, name: string) {
-      const manager = contextManager(this);
-      manager.saveMemory(name, name);
-      return true;
-    }
-  )
-  .fixed();
-
-myBilder.ddd('Murad');
-myBilder.ddd('Muradd');
 /**
  * Example of creating a `BuilderIf` instance and adding a plugin:
  *

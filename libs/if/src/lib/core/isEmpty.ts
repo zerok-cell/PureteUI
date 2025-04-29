@@ -1,7 +1,5 @@
-import { ifExists } from './ifExists.js';
 import { TIfCoreKey } from '../types/core/index.js';
-import { TContext } from '../types/builderIf.types.js';
-import { isEqual } from './isEqual.js';
+import { TContext } from '../types/context/index.js';
 
 /**
  * @function
@@ -40,13 +38,13 @@ export const ifEmpty: TIfCoreKey<'ifEmpty'> = function <T = unknown>(
 ): boolean {
   switch (typeof variable) {
     case 'number':
-      return ifExists(variable);
+      return !variable;
     case 'string':
-      return ifExists(variable);
+      return !variable;
     case 'object':
-      if (isEqual(variable, null)) return true;
+      if (variable === null) return true;
       return Object.keys(variable as object).length === 0;
     default:
-      return ifExists(variable);
+      return !variable;
   }
 };

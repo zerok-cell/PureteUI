@@ -2,8 +2,13 @@
   "name": "@purete-ui/if",
   "version": "0.0.1",
   "type": "module",
+  "author": "zerokqx <swiftkey382@gmail.com>",
+  "repository": "https://github.com/zerokqx/PureteUI",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "scripts": {
+    "build": "swc src/index.ts -o dist/index.js"
+  },
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",

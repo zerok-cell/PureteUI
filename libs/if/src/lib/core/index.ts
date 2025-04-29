@@ -1,7 +1,6 @@
-import { ifExists } from './ifExists.js';
 import { TIfCore } from '../types/core/index.js';
 import { isType } from './isType.js';
-import { isEqual } from './isEqual.js';
+import { isEq } from './isEq.js';
 import { ifExistKey } from './ifExistKey.js';
 import { ifEmpty } from './isEmpty.js';
 
@@ -18,10 +17,9 @@ import { ifEmpty } from './isEmpty.js';
  * ```
  */
 export const core: TIfCore = {
-  ifExists,
   isType,
-  isEqual,
+  isEq,
   ifExistKey,
   ifEmpty,
 };
-export { ifExists, isType, isEqual, ifExistKey, ifEmpty };
+export { isType, isEq, ifExistKey, ifEmpty };

@@ -2,7 +2,8 @@ import { TContext } from '../../types/context/index.js';
 
 export const contextManager = function (ctx: TContext) {
   const clearTmp = () => (ctx.tmp = []);
-  const addTmp = (value: TContext['tmp']) => ctx.tmp.push(value);
+  const addTmp = <E extends keyof TContext['tmp']>(value: TContext['tmp'][E]) =>
+    ctx.tmp.push(value);
   /**
    *  @public
    *  @function
@@ -14,23 +15,24 @@ export const contextManager = function (ctx: TContext) {
   const saveTmp = (): void => {
     const currentTmp = ctx.tmp;
     if (ctx.memory.tmp) {
-      ctx.memory['tmp'].push(currentTmp);
+      ctx.memory.tmp.push(currentTmp);
     } else {
       ctx.memory['tmp'] = [];
       ctx.memory['tmp'].push(currentTmp);
     }
   };
+  const getFirstTmp = <R extends typeof ctx.tmp>(): R => ctx.tmp[0] as R;
+  const getLastTmp = <R extends typeof ctx.tmp>(): R => ctx.tmp.pop() as R;
   const saveMemory = (key: string, value: unknown) => {
     if (key in ctx.memory) throw Error('Memory key is exists');
     ctx.memory[key] = value;
   };
-  const getValueCache = <R>(key: string): R | undefined => {
-    return undefined;
-  };
+
   const clearMemory = () => (ctx.memory.tmp = []);
   return {
+    getFirstTmp,
+    getLastTmp,
     saveMemory,
-    getValueCache,
     clearTmp,
     addTmp,
     saveTmp,

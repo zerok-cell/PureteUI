@@ -3,9 +3,8 @@ import { TTypeofType } from './typeof.types.js';
 import { TRPlugin } from '../builderIf.types.js';
 
 export type TIfCore = {
-  ifExists: (variable: unknown, i?: boolean) => TRPlugin;
   isType: FTDoubleParam<TTypeofType>;
-  isEqual: FTDoubleParam<unknown>;
+  isEq: TIsEq;
   ifExistKey: <T extends object>(
     obj: Partial<T>,
     key: keyof T | string
@@ -14,3 +13,7 @@ export type TIfCore = {
 };
 
 export type TIfCoreKey<T extends keyof TIfCore> = TIfCore[T];
+export type TIsEq = <TOperandFirst extends TOperandSecond, TOperandSecond>(
+  operandFirst: TOperandFirst,
+  operandSecond: TOperandSecond
+) => boolean;

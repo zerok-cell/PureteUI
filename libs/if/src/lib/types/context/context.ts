@@ -1,7 +1,7 @@
 import { TArgs } from '../builderIf.types.js';
 
 export type TContext = {
-  tmp: Array<unknown>;
+  tmp: unknown[];
   memory: {
     tmp: TContext['tmp'];
   } & Record<string, unknown>;

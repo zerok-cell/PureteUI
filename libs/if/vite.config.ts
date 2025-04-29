@@ -30,7 +30,7 @@ export default defineConfig(() => ({
       entry: 'src/index.ts',
       name: '@zero-ui/if',
       fileName: 'index',
-      formats: ['es' as const, 'cjs' as const, 'umd' as const],
+      formats: ['es' as const],
     },
   },
 }));

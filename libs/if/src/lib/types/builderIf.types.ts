@@ -1,7 +1,7 @@
 export type TArgs<T = unknown> = T[];
 
 export type TPlugin<Args extends TArgs = []> = (...args: Args) => boolean;
-export type TRPlugin<A extends TArgs> = ReturnType<TPlugin<A>>;
+export type TRPlugin = ReturnType<TPlugin>;
 export type TConfig = {
   autoAddContext?: boolean;
 };
