@@ -1,3 +1,6 @@
+import { TIfCore } from './core/index.js';
+import { TFunctionCore } from './functions/index.js';
+
 export type TArgs<T = unknown> = T[];
 
 export type TPlugin<Args extends TArgs = []> = (...args: Args) => boolean;
@@ -22,3 +25,5 @@ export type TConfigPlugin<N> = {
   context?: boolean;
   name: N;
 };
+
+export type TCorePlugins = TIfCore & TFunctionCore;

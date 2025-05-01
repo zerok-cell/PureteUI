@@ -1,9 +1,17 @@
 'use strict';
 
-import { TArgs, TConfig, TConfigPlugin, TDoubleRecord, TPlugin, TPluginObject } from '../types/builderIf.types.js';
+import {
+  TArgs,
+  TConfig,
+  TConfigPlugin,
+  TCorePlugins,
+  TDoubleRecord,
+  TPlugin,
+  TPluginObject,
+} from '../types/builderIf.types.js';
 import { core, isType } from '../core/index.js';
 import { Context, TContextClass } from './context/index.js';
-import { TIfCore } from '../types/core/index.js';
+import { functionValidateCore } from '../functions/index.js';
 
 /**
  * @private
@@ -42,18 +50,18 @@ const TEXT_ERROR: {
  * **Please note that changing the generic type `T` may lead to inaccuracies and typing errors.**
  *
  * ## Properties:
- * - `plugins`: An object that holds all registered plugins, each mapped by its name.
+ * - `#plugins`: An object that holds all registered plugins, each mapped by its name.
  * - `#config`: A configuration object that determines the behavior of the builder.
  * - `#context`: The #context manager instance that controls plugin #context and state.
  *
  * ## Example
  *
  * ```ts
- * const builder = new BuilderIf()
+ * const builder = new If()
  *   .plugin(
- *     { name: 'plugin', #context: false },
- *     function (this: TContext, param: string) {
- *       console.log(this);  // The #context is not accessible here
+ *     { name: 'plugin', context: false },
+ *     function (param: string) {
+ *       console.log(this);
  *       console.log(param);
  *       return true;
  *     }
@@ -62,15 +70,15 @@ const TEXT_ERROR: {
  *
  * builder.plugin('parametr');  // Calling the plugin registered with the name 'd'
  * ```
- * @version 1.0.2
+ * @version 0.0.2
  * @author zerokqx
  * @see TPluginObject
  * @see TConfig
  * @see TConfigPlugin
  * @see TArgs
- * @see TContext
+ * @see TContextw
  *
- * @property {Record<string, TPlugin>} #plugins - A function for adding a new plugin to the stack
+ * @property {TPluginObject} #plugins - A function for adding a new plugin to the stack
  * @property {TConfig} #config - The configuration object for the builder, including settings such as `autoAddContext`.
  * @property {TContextClass} #context - The #context manager that handles interactions with plugins.
  */
@@ -94,9 +102,11 @@ export class IF<T extends TPluginObject> {
   #context: TContextClass = new Context<Extract<keyof T, string>>();
 
   /**
-   * Creates a new `BuilderIf` instance with an optional configuration object.
+   * Creates a new `IF` instance with an optional configuration object.
    * The configuration will override the default configuration if provided.
-   *
+   * @remarks By default, your config will be {name:"Plugin", context:false},
+   * it follows that you will not be able to add more than one plugin to the
+   * `IF` due to a name conflict.
    * @param {TConfig} [config] - Optional configuration to customize the behavior of the builder.
    */
   constructor(config: TConfig = DEFAULT_CONFIG) {
@@ -126,8 +136,10 @@ export class IF<T extends TPluginObject> {
    *     }
    *   );
    * ```
-   *
-   * @param {TConfigPlugin<N>} [config] - The plugin configuration object, including options like `name` and `#context`.
+   * @template N Plugin Name
+   * @template A plugin function arguments
+   * @template T All downloaded plugins at the moment
+   * @param {TConfigPlugin<N>} config - The plugin configuration object, including options like `name` and `#context`.
    * @param {TPlugin<A>} fn - The plugin function that gets registered. It will be invoked later through the builder.
    * @returns {IF<TDoubleRecord<T, N, TPlugin<A>>>} - The updated `BuilderIf` instance with the new plugin added.
    *
@@ -138,7 +150,6 @@ export class IF<T extends TPluginObject> {
     fn: TPlugin<A>
   ): IF<TDoubleRecord<T, N, TPlugin<A>>> => {
     if (config.name in this.#plugins) throw Error(TEXT_ERROR.pluginExists);
-
     if (!isType(fn, 'function')) throw Error(TEXT_ERROR.typeofError);
     if (
       !Object.prototype.hasOwnProperty.call(fn, 'prototype') &&
@@ -150,16 +161,18 @@ export class IF<T extends TPluginObject> {
   };
 
   /**
+   * @description
    * Freezes the current plugins object, making it immutable, and returns it.
    * This allows the builder's plugin set to be locked once you are done adding plugins.
-   *
-   * @returns {Readonly<T>} - The frozen plugins object, which can no longer be modified.
+   * @template T Downloaded plugins
+   * @returns {Readonly<T & TIfCore>} - The frozen plugins object, which can no longer be modified.
    */
-  readonly fixed = (): Readonly<T & TIfCore> =>
+  readonly fixed = (): Readonly<T & TCorePlugins> =>
     Object.freeze({
       ...this.#plugins,
       ...core,
-    }) as Readonly<T & TIfCore>;
+      ...functionValidateCore,
+    }) as ReturnType<typeof this.fixed>;
 
   #effect = <A extends TArgs, N extends string>(
     fn: TPlugin<A>,
@@ -171,6 +184,10 @@ export class IF<T extends TPluginObject> {
       return result;
     };
   };
+  /**
+   * @internal
+   * @private
+   */
   readonly #encapsulation = <A extends TArgs, N extends string>(
     config: TConfigPlugin<N>,
     fn: TPlugin<A>
@@ -185,31 +202,7 @@ export class IF<T extends TPluginObject> {
 
   /**
    * Retrieves the current configuration settings of the builder.
-   *
    * @returns {TConfig} - The configuration object for the builder.
    */
   #gConf = (): TConfig => this.#config;
 }
-
-/**
- * Example of creating a `BuilderIf` instance and adding a plugin:
- *
- * ```ts
- * const builder = new BuilderIf()
- *   .plugin(
- *     { name: 'plugin', context: false },
- *     function (this: TContext, param: string) {
- *       console.log(this);  // The context is not accessible here
- *       console.log(param);
- *       return true;
- *     }
- *   )
- *   .fixed();
- *
- * builder.plugin('parametr');  // Calling the plugin registered with the name 'd'
- * ```
- */
-
-const x = new IF().plugin({
-
-})

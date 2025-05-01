@@ -22,8 +22,8 @@ necessary.
 ---
 You can read the documentation in text form and on the website.:
 
-1) [Text-documentation](/docs-md/@purete-ui/if/README.md)
-2) [Site-documentation]()
+1) [Text-documentation](http://github.com/zerokqx/PureteUI/tree/main/docs-md/%40purete-ui/if)
+2) [Site-documentation](https://zerokqx.github.io/PureteUI/modules/_purete-ui_if.html)
 
 ## Classes
 
@@ -39,6 +39,7 @@ You can read the documentation in text form and on the website.:
 - [TConfig](type-aliases/TConfig.md)
 - [TPluginObject](type-aliases/TPluginObject.md)
 - [TConfigPlugin](type-aliases/TConfigPlugin.md)
+- [TCorePlugins](type-aliases/TCorePlugins.md)
 - [TContext](type-aliases/TContext.md)
 - [TContextObject](type-aliases/TContextObject.md)
 - [FTOnceParam](type-aliases/FTOnceParam.md)

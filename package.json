@@ -6,7 +6,8 @@
   "scripts": {
     "docs:md": "typedoc --plugin typedoc-plugin-markdown --plugin typedoc-github-theme --out docs-md",
     "docs:html": "typedoc --plugin typedoc-github-theme --out docs",
-    "docs:all": "pnpm run docs:md && pnpm run docs:html"
+    "docs:all": "pnpm run docs:md && pnpm run docs:html",
+    "prepublish": "pnpm run docs:all && git add ."
   },
   "private": false,
   "devDependencies": {

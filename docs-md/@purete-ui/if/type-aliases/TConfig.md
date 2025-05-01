@@ -8,7 +8,7 @@
 
 > **TConfig** = `object`
 
-Defined in: [types/builderIf.types.ts:5](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L5)
+Defined in: [types/builderIf.types.ts:8](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L8)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [types/builderIf.types.ts:5](https://github.com/zerok-cell/PureteUI/
 
 > `optional` **autoAddContext**: `boolean`
 
-Defined in: [types/builderIf.types.ts:6](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L6)
+Defined in: [types/builderIf.types.ts:9](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L9)
