@@ -6,11 +6,11 @@
 
 # Class: IF\<T\>
 
-Defined in: [builder/IF.ts:77](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L77)
+Defined in: [builder/IF.ts:85](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L85)
 
 ## Version
 
-1.0.2
+0.0.2
 
 ## Author
 
@@ -22,7 +22,7 @@ zerokqx
  - TConfig
  - TConfigPlugin
  - TArgs
- - TContext
+ - TContextw
 
 ## Type Parameters
 
@@ -37,18 +37,18 @@ You can add a plugin function that can optionally access the #context, and the c
 **Please note that changing the generic type `T` may lead to inaccuracies and typing errors.**
 
 ## Properties:
-- `plugins`: An object that holds all registered plugins, each mapped by its name.
+- `#plugins`: An object that holds all registered plugins, each mapped by its name.
 - `#config`: A configuration object that determines the behavior of the builder.
 - `#context`: The #context manager instance that controls plugin #context and state.
 
 ## Example
 
 ```ts
-const builder = new BuilderIf()
+const builder = new If()
   .plugin(
-    { name: 'plugin', #context: false },
-    function (this: TContext, param: string) {
-      console.log(this);  // The #context is not accessible here
+    { name: 'plugin', context: false },
+    function (param: string) {
+      console.log(this);
       console.log(param);
       return true;
     }
@@ -64,9 +64,9 @@ builder.plugin('parametr');  // Calling the plugin registered with the name 'd'
 
 > **new IF**\<`T`\>(`config?`): `IF`\<`T`\>
 
-Defined in: [builder/IF.ts:102](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L102)
+Defined in: [builder/IF.ts:112](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L112)
 
-Creates a new `BuilderIf` instance with an optional configuration object.
+Creates a new `IF` instance with an optional configuration object.
 The configuration will override the default configuration if provided.
 
 #### Parameters
@@ -81,13 +81,19 @@ Optional configuration to customize the behavior of the builder.
 
 `IF`\<`T`\>
 
+#### Remarks
+
+By default, your config will be {name:"Plugin", context:false},
+it follows that you will not be able to add more than one plugin to the
+`IF` due to a name conflict.
+
 ## Methods
 
 ### plugin()
 
-> `readonly` **plugin**\<`N`, `A`\>(`config?`, `fn?`): `IF`\<[`TDoubleRecord`](../type-aliases/TDoubleRecord.md)\<`T`, `N`, [`TPlugin`](../type-aliases/TPlugin.md)\<`A`\>\>\>
+> `readonly` **plugin**\<`N`, `A`\>(`config`, `fn`): `IF`\<[`TDoubleRecord`](../type-aliases/TDoubleRecord.md)\<`T`, `N`, [`TPlugin`](../type-aliases/TPlugin.md)\<`A`\>\>\>
 
-Defined in: [builder/IF.ts:136](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L136)
+Defined in: [builder/IF.ts:148](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L148)
 
 Registers a new plugin into the builder. The plugin is a function that is added to the #context
 and can be called later through the builder instance.
@@ -113,19 +119,23 @@ builderIf()
 
 `N` *extends* `string`
 
+Plugin Name
+
 ##### A
 
 `A` *extends* [`TArgs`](../type-aliases/TArgs.md)
 
+plugin function arguments
+
 #### Parameters
 
-##### config?
+##### config
 
 [`TConfigPlugin`](../type-aliases/TConfigPlugin.md)\<`N`\> = `...`
 
 The plugin configuration object, including options like `name` and `#context`.
 
-##### fn?
+##### fn
 
 [`TPlugin`](../type-aliases/TPlugin.md)\<`A`\>
 
@@ -145,15 +155,17 @@ The plugin function that gets registered. It will be invoked later through the b
 
 ### fixed()
 
-> `readonly` **fixed**(): `Readonly`\<`T` & [`TIfCore`](../type-aliases/TIfCore.md)\>
+> `readonly` **fixed**(): `Readonly`\<`T` & [`TIfCore`](../type-aliases/TIfCore.md) & `TFunctionCore`\>
 
-Defined in: [builder/IF.ts:158](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L158)
-
-Freezes the current plugins object, making it immutable, and returns it.
-This allows the builder's plugin set to be locked once you are done adding plugins.
+Defined in: [builder/IF.ts:170](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/builder/IF.ts#L170)
 
 #### Returns
 
-`Readonly`\<`T` & [`TIfCore`](../type-aliases/TIfCore.md)\>
+`Readonly`\<`T` & [`TIfCore`](../type-aliases/TIfCore.md) & `TFunctionCore`\>
 
 - The frozen plugins object, which can no longer be modified.
+
+#### Description
+
+Freezes the current plugins object, making it immutable, and returns it.
+This allows the builder's plugin set to be locked once you are done adding plugins.

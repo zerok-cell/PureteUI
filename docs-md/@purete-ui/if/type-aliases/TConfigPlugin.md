@@ -8,7 +8,7 @@
 
 > **TConfigPlugin**\<`N`\> = `object`
 
-Defined in: [types/builderIf.types.ts:21](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L21)
+Defined in: [types/builderIf.types.ts:24](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L24)
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: [types/builderIf.types.ts:21](https://github.com/zerok-cell/PureteUI
 
 > `optional` **context**: `boolean`
 
-Defined in: [types/builderIf.types.ts:22](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L22)
+Defined in: [types/builderIf.types.ts:25](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L25)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [types/builderIf.types.ts:22](https://github.com/zerok-cell/PureteUI
 
 > **name**: `N`
 
-Defined in: [types/builderIf.types.ts:23](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L23)
+Defined in: [types/builderIf.types.ts:26](https://github.com/zerok-cell/PureteUI/blob/main/libs/if/src/lib/types/builderIf.types.ts#L26)

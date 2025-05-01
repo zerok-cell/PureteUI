@@ -16,5 +16,5 @@ necessary.
 ---
 You can read the documentation in text form and on the website.:
 
-1) [Text-documentation](/docs-md/@purete-ui/if/README.md)
-2) [Site-documentation]()
+1) [Text-documentation](http://github.com/zerokqx/PureteUI/tree/main/docs-md/%40purete-ui/if)
+2) [Site-documentation](https://zerokqx.github.io/PureteUI/modules/_purete-ui_if.html)
